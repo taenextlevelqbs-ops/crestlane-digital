@@ -1531,3 +1531,9 @@ a.logoProject:hover .logoProjectVisual img {
   border: none !important;
   background: transparent !important;
 }
+/* Merriton Federal logo */
+.logoProjectVisual img[src*="Merriton"] {
+  object-fit: contain;
+  width: 68%;
+  height: 210px;
+}

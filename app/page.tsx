@@ -45,14 +45,14 @@ const projects = [
   },
   {
     number: "05",
-    name: "Independent Pharmacy",
-    category: "Concept Build",
+    name: "Merriton Federal",
+    category: "Federal Services",
     description:
-      "A modern pharmacy concept focused on trust, accessibility and a simpler customer experience.",
-    image: "",
-    url: "",
-    domain: "Crestlane Concept",
-    fit: "cover",
+      "A professional digital presence for Merriton Federal.",
+    image: "/Merriton Transparent Logo.png",
+    url: "https://www.merritonfederal.com/",
+    domain: "merritonfederal.com",
+    fit: "contain",
   },
 ];
 
@@ -209,63 +209,39 @@ export default function Home() {
         </div>
 
         <div className="projectGrid logoGrid">
-          {projects.map((project) =>
-            project.url ? (
-              <a
-                className="logoProject"
-                href={project.url}
-                target="_blank"
-                rel="noreferrer"
-                key={project.number}
-              >
-                <div className="logoProjectTop">
-                  <span>{project.number}</span>
-                  <span>{project.category}</span>
-                </div>
-
-                <div className="logoProjectVisual">
-                  <img
-                    src={project.image}
-                    alt={`${project.name} logo`}
-                    className={
-                      project.name === "Maverick Athletics Training"
-                        ? "maverickLogo"
-                        : ""
-                    }
-                  />
-                </div>
-
-                <div className="logoProjectBottom">
-                  <div>
-                    <h3>{project.name}</h3>
-                    <p>{project.domain}</p>
-                  </div>
-
-                  <span className="logoProjectArrow">↗</span>
-                </div>
-              </a>
-            ) : (
-              <div className="logoProject conceptProject" key={project.number}>
-                <div className="logoProjectTop">
-                  <span>{project.number}</span>
-                  <span>{project.category}</span>
-                </div>
-
-                <div className="logoProjectVisual conceptLogo">
-                  <span>RX</span>
-                </div>
-
-                <div className="logoProjectBottom">
-                  <div>
-                    <h3>{project.name}</h3>
-                    <p>CRESTLANE CONCEPT</p>
-                  </div>
-
-                  <span className="conceptMark">CONCEPT</span>
-                </div>
+          {projects.map((project) => (
+            <a
+              className="logoProject"
+              href={project.url}
+              target="_blank"
+              rel="noreferrer"
+              key={project.number}
+            >
+              <div className="logoProjectTop">
+                <span>{project.number}</span>
+                <span>{project.category}</span>
               </div>
-            )
-          )}
+
+              <div className="logoProjectVisual">
+                <img
+                  src={project.image}
+                  alt={`${project.name} logo`}
+                  className={
+                    project.fit === "contain" ? "maverickLogo" : ""
+                  }
+                />
+              </div>
+
+              <div className="logoProjectBottom">
+                <div>
+                  <h3>{project.name}</h3>
+                  <p>{project.domain}</p>
+                </div>
+
+                <span className="logoProjectArrow">↗</span>
+              </div>
+            </a>
+          ))}
         </div>
       </section>
 
@@ -408,12 +384,7 @@ function ProjectVisual({
         {project.image ? (
           <img src={project.image} alt={`${project.name} preview`} />
         ) : (
-          <div className="conceptVisual">
-            <div className="conceptCross">+</div>
-            <span>CRESTLANE / CONCEPT 01</span>
-            <strong>RX</strong>
-            <p>Independent Pharmacy</p>
-          </div>
+          <div className="conceptVisual" />
         )}
 
         <div className="screenSheen" />

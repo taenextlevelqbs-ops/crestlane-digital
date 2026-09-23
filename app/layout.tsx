@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: "Crestlane Digital",
     images: [
       {
-        url: "/CrestLaneDigitalLogo.jpeg",
+        url: "/crestlane-share.jpg",
         alt: "Crestlane Digital",
       },
     ],
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Crestlane Digital",
     description: "Digital experiences for what's next.",
-    images: ["/CrestLaneDigitalLogo.jpeg"],
+    images: ["/crestlane-share.jpg"],
   },
 
   icons: {
