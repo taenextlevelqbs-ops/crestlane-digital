@@ -16,8 +16,13 @@ const services = [
   },
   {
     number: "04",
-    title: "Optimization",
-    text: "Performance, usability and improvements for an existing digital presence.",
+    title: "Security & Monitoring",
+    text: "Website monitoring, security hardening, uptime checks and ongoing protection.",
+  },
+  {
+    number: "05",
+    title: "Support & Maintenance",
+    text: "Updates, troubleshooting, performance improvements and ongoing technical support.",
   },
 ];
 
@@ -197,9 +202,81 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="support">
+        <div className="supportHeader">
+          <span>03 / ONGOING SUPPORT</span>
+
+          <div>
+            <h2>We don&apos;t disappear after launch.</h2>
+            <p>
+              Crestlane can continue supporting your digital presence after
+              your website goes live, helping keep it secure, available and
+              running the way it should.
+            </p>
+          </div>
+        </div>
+
+        <div className="supportGrid">
+          <article>
+            <span>01</span>
+            <div className="supportIcon">
+              <i className="statusLight" />
+            </div>
+            <h3>Uptime Monitoring</h3>
+            <p>
+              Ongoing availability checks to help identify website issues and
+              unexpected downtime.
+            </p>
+          </article>
+
+          <article>
+            <span>02</span>
+            <div className="supportIcon shieldIcon">◇</div>
+            <h3>Security Hardening</h3>
+            <p>
+              Practical security configuration and preventative measures
+              designed to reduce unnecessary exposure.
+            </p>
+          </article>
+
+          <article>
+            <span>03</span>
+            <div className="supportIcon pulseIcon">
+              <b />
+              <b />
+              <b />
+            </div>
+            <h3>Performance Checks</h3>
+            <p>
+              Regular reviews focused on speed, reliability and the overall
+              experience of your website.
+            </p>
+          </article>
+
+          <article>
+            <span>04</span>
+            <div className="supportIcon">↻</div>
+            <h3>Ongoing Maintenance</h3>
+            <p>
+              Technical updates, troubleshooting and continued support as your
+              business and website evolve.
+            </p>
+          </article>
+        </div>
+
+        <div className="supportStatus">
+          <div>
+            <i />
+            <span>SYSTEM STATUS</span>
+          </div>
+
+          <strong>MONITORING ACTIVE</strong>
+        </div>
+      </section>
+
       <section className="work" id="work">
         <div className="sectionHeader">
-          <span>03 / SELECTED WORK</span>
+          <span>04 / SELECTED WORK</span>
           <h2>Things we&apos;ve built</h2>
         </div>
 
@@ -270,7 +347,7 @@ export default function Home() {
 
       <section className="contact" id="contact">
         <div className="contactLeft">
-          <span>04 / START SOMETHING</span>
+          <span>05 / START SOMETHING</span>
 
           <h2>
             Have an idea?
