@@ -1,203 +1,175 @@
-const capabilities = [
-  "Website Design",
-  "Web Development",
-  "Digital Systems",
-  "Security & Monitoring",
-  "Support & Maintenance",
+const projects = [
+  {
+    number: "01",
+    name: "NOVA Sports Live",
+    category: "Sports Media Platform",
+    description:
+      "A digital platform for Northern Virginia high school sports, bringing scores, teams, rankings and coverage into one experience.",
+    image: "/novasportslive.png",
+    url: "https://novasportslive.com",
+    domain: "novasportslive.com",
+    fit: "cover",
+  },
+  {
+    number: "02",
+    name: "DMV Attack",
+    category: "Sports Organization",
+    description:
+      "A modern digital home for a growing regional football organization built around athletes, teams and the DMV Attack brand.",
+    image: "/dmvattack.jpeg",
+    url: "https://dmvattack.com",
+    domain: "dmvattack.com",
+    fit: "cover",
+  },
+  {
+    number: "03",
+    name: "Coach Tae QB",
+    category: "Athlete Development",
+    description:
+      "A focused training platform built around quarterback development, athlete growth and the Coach Tae brand.",
+    image: "/CoachTaeqb.png",
+    url: "https://coachtaeqb.com",
+    domain: "coachtaeqb.com",
+    fit: "cover",
+  },
+  {
+    number: "04",
+    name: "Maverick Athletics Training",
+    category: "Performance Training",
+    description:
+      "A digital presence for athlete performance, training programs and the Maverick Athletics brand.",
+    image: "/maverickathleticstraining.PNG",
+    url: "https://www.maverickathleticstraining.com/",
+    domain: "maverickathleticstraining.com",
+    fit: "contain",
+  },
+  {
+    number: "05",
+    name: "Independent Pharmacy",
+    category: "Concept Build",
+    description:
+      "A modern pharmacy concept focused on trust, accessibility and a simpler customer experience.",
+    image: "",
+    url: "",
+    domain: "Crestlane Concept",
+    fit: "cover",
+  },
 ];
 
 const services = [
   {
     number: "01",
-    title: "Design & Development",
-    text: "Modern websites designed around your brand, customers and business goals.",
+    name: "Web Design",
+    description:
+      "Clean, distinctive digital experiences built around your brand and customers.",
   },
   {
     number: "02",
-    title: "Digital Solutions",
-    text: "Practical technology that helps businesses improve how they operate online.",
+    name: "Development",
+    description:
+      "Fast, responsive websites built with modern technology and thoughtful architecture.",
   },
   {
     number: "03",
-    title: "Security & Monitoring",
-    text: "Website hardening, uptime monitoring and preventative security measures.",
+    name: "Digital Systems",
+    description:
+      "Practical digital solutions designed to improve how your business operates.",
   },
   {
     number: "04",
-    title: "Ongoing Support",
-    text: "Maintenance, updates, troubleshooting and continued technical support.",
-  },
-];
-
-const projects = [
-  {
-    tag: "SPORTS MEDIA",
-    name: "NOVA Sports Live",
-    code: "NSL",
-    className: "projectLarge",
+    name: "Security & Monitoring",
+    description:
+      "Website hardening, uptime awareness and preventative technical measures.",
   },
   {
-    tag: "SPORTS ORGANIZATION",
-    name: "DMV Attack",
-    code: "DMA",
-    className: "",
-  },
-  {
-    tag: "ATHLETE DEVELOPMENT",
-    name: "Coach Tae QB",
-    code: "CTQ",
-    className: "",
+    number: "05",
+    name: "Ongoing Support",
+    description:
+      "Maintenance, improvements and technical support after your website goes live.",
   },
 ];
 
 export default function Home() {
   return (
     <main>
-      <header className="nav">
-        <a className="brand" href="#">
-          <img src="/CrestLaneDigitalLogo.jpeg" alt="Crestlane Digital" />
-        </a>
+      <section className="hero" id="home">
+        <div className="heroAtmosphere" />
+        <div className="heroTexture" />
 
-        <nav>
-          <a href="#services">Services</a>
-          <a href="#work">Work</a>
-          <a href="#support">Support</a>
-          <a href="#about">About</a>
-        </nav>
+        <header className="header">
+          <div className="brandSpace" aria-hidden="true" />
 
-        <a className="navButton" href="mailto:sales@crstlanedigital.com">
-          Let&apos;s Talk
-          <span>↗</span>
-        </a>
-      </header>
+          <nav>
+            <a href="#studio">Studio</a>
+            <a href="#services">Services</a>
+            <a href="#work">Work</a>
+          </nav>
 
-      <section className="hero">
-        <div className="heroCopy">
-          <div className="eyebrow">
-            <i />
-            DIGITAL SOLUTIONS FOR MODERN BUSINESS
-          </div>
+          <a className="headerContact" href="mailto:sales@crstlanedigital.com">
+            Start a project <span>↗</span>
+          </a>
+        </header>
+
+        <div className="heroContent">
+          <span className="heroLabel">CRESTLANE DIGITAL</span>
 
           <h1>
-            Technology should
+            Digital experiences
             <br />
-            move your business
-            <br />
-            <span>forward.</span>
+            for what&apos;s next.
           </h1>
-
-          <p>
-            Crestlane Digital designs, builds and supports modern digital
-            experiences for businesses that want technology to work better.
-          </p>
-
-          <div className="heroButtons">
-            <a className="primaryButton" href="mailto:sales@crstlanedigital.com">
-              Start a Project
-              <span>↗</span>
-            </a>
-
-            <a className="secondaryButton" href="#work">
-              View Our Work
-            </a>
-          </div>
-
-          <div className="capabilities">
-            {capabilities.map((capability) => (
-              <span key={capability}>{capability}</span>
-            ))}
-          </div>
         </div>
 
-        <div className="heroVisual">
-          <div className="visualHeader">
-            <div className="windowDots">
-              <i />
-              <i />
-              <i />
-            </div>
+        <div className="heroFoot">
+          <span>DESIGN / DEVELOPMENT / DIGITAL SYSTEMS</span>
 
-            <span>CRESTLANE / DIGITAL OPERATIONS</span>
-
-            <strong>LIVE</strong>
-          </div>
-
-          <div className="visualMain">
-            <div className="visualLabel">
-              <span>PROJECT ENVIRONMENT</span>
-              <strong>ONLINE</strong>
-            </div>
-
-            <div className="metric">
-              <span>DIGITAL</span>
-              <strong>READY</strong>
-              <p>Design · Development · Support</p>
-            </div>
-
-            <div className="graph">
-              <span className="graphLine" />
-              <i className="g1" />
-              <i className="g2" />
-              <i className="g3" />
-              <i className="g4" />
-              <i className="g5" />
-              <i className="g6" />
-              <i className="g7" />
-              <i className="g8" />
-            </div>
-
-            <div className="systemMetrics">
-              <div>
-                <span>WEB</span>
-                <strong>ACTIVE</strong>
-              </div>
-
-              <div>
-                <span>SECURITY</span>
-                <strong>MONITORED</strong>
-              </div>
-
-              <div>
-                <span>SUPPORT</span>
-                <strong>READY</strong>
-              </div>
-            </div>
-          </div>
+          <a href="#studio">
+            EXPLORE <i>↓</i>
+          </a>
         </div>
       </section>
 
-      <section className="intro" id="about">
-        <div className="introLabel">
+      <section className="studio" id="studio">
+        <div className="sectionLabel">
           <span>01</span>
-          <p>THE COMPANY</p>
+          <p>THE STUDIO</p>
         </div>
 
-        <div className="introMain">
+        <div className="studioContent">
           <h2>
-            More than a website.
+            Thoughtful technology.
             <br />
-            <span>A digital partner.</span>
+            <span>Built with purpose.</span>
           </h2>
 
-          <div className="introText">
+          <div className="studioCopy">
             <p>
-              We combine design, development and practical technology to help
-              businesses create a stronger digital presence.
+              Crestlane Digital is a creative technology studio building
+              modern websites and digital systems for businesses ready to
+              strengthen how they operate and show up online.
             </p>
 
             <p>
-              From the first build to ongoing monitoring and support, Crestlane
-              focuses on solutions that look sharp, perform well and make sense
-              for the business behind them.
+              We bring strategy, design, development and continued support
+              together so the finished product looks right, works right and
+              keeps moving forward.
             </p>
           </div>
         </div>
       </section>
 
       <section className="services" id="services">
-        <div className="sectionTitle">
-          <span>02 / SERVICES</span>
-          <h2>How we can help.</h2>
+        <div className="sectionHeader">
+          <div className="sectionLabel">
+            <span>02</span>
+            <p>CAPABILITIES</p>
+          </div>
+
+          <h2>
+            From first idea
+            <br />
+            to <span>what comes next.</span>
+          </h2>
         </div>
 
         <div className="serviceList">
@@ -205,10 +177,9 @@ export default function Home() {
             <article key={service.number}>
               <span className="serviceNumber">{service.number}</span>
 
-              <div>
-                <h3>{service.title}</h3>
-                <p>{service.text}</p>
-              </div>
+              <h3>{service.name}</h3>
+
+              <p>{service.description}</p>
 
               <span className="serviceArrow">↗</span>
             </article>
@@ -217,151 +188,236 @@ export default function Home() {
       </section>
 
       <section className="work" id="work">
-        <div className="sectionTitle workTitle">
-          <span>03 / SELECTED WORK</span>
-          <h2>Built by Crestlane.</h2>
+        <div className="sectionHeader workHeader">
+          <div className="sectionLabel">
+            <span>03</span>
+            <p>SELECTED WORK</p>
+          </div>
+
+          <div>
+            <h2>
+              Things we&apos;ve
+              <br />
+              <span>put into the world.</span>
+            </h2>
+
+            <p className="workIntro">
+              Selected websites, platforms and digital concepts designed and
+              developed by Crestlane.
+            </p>
+          </div>
         </div>
 
-        <div className="bento">
-          {projects.map((project, index) => (
-            <article
-              className={`projectCard ${project.className}`}
-              key={project.name}
-            >
-              <div className="projectTop">
-                <span>{project.tag}</span>
-                <span>0{index + 1}</span>
-              </div>
-
-              <div className="projectCode">{project.code}</div>
-
-              <div className="projectBottom">
-                <div>
-                  <span>PROJECT</span>
-                  <h3>{project.name}</h3>
+        <div className="projectGrid logoGrid">
+          {projects.map((project) =>
+            project.url ? (
+              <a
+                className="logoProject"
+                href={project.url}
+                target="_blank"
+                rel="noreferrer"
+                key={project.number}
+              >
+                <div className="logoProjectTop">
+                  <span>{project.number}</span>
+                  <span>{project.category}</span>
                 </div>
 
-                <span className="projectArrow">↗</span>
+                <div className="logoProjectVisual">
+                  <img
+                    src={project.image}
+                    alt={`${project.name} logo`}
+                    className={
+                      project.name === "Maverick Athletics Training"
+                        ? "maverickLogo"
+                        : ""
+                    }
+                  />
+                </div>
+
+                <div className="logoProjectBottom">
+                  <div>
+                    <h3>{project.name}</h3>
+                    <p>{project.domain}</p>
+                  </div>
+
+                  <span className="logoProjectArrow">↗</span>
+                </div>
+              </a>
+            ) : (
+              <div className="logoProject conceptProject" key={project.number}>
+                <div className="logoProjectTop">
+                  <span>{project.number}</span>
+                  <span>{project.category}</span>
+                </div>
+
+                <div className="logoProjectVisual conceptLogo">
+                  <span>RX</span>
+                </div>
+
+                <div className="logoProjectBottom">
+                  <div>
+                    <h3>{project.name}</h3>
+                    <p>CRESTLANE CONCEPT</p>
+                  </div>
+
+                  <span className="conceptMark">CONCEPT</span>
+                </div>
               </div>
-            </article>
-          ))}
-
-          <article className="projectStatement">
-            <span>CRESTLANE DIGITAL</span>
-
-            <h3>
-              Built clean.
-              <br />
-              Built modern.
-              <br />
-              <strong>Built right.</strong>
-            </h3>
-
-            <p>
-              Every project starts with the problem, not a template.
-            </p>
-          </article>
+            )
+          )}
         </div>
       </section>
 
-      <section className="support" id="support">
-        <div className="supportIntro">
-          <span>04 / AFTER LAUNCH</span>
+      <section className="support">
+        <div className="supportContent">
+          <div className="sectionLabel">
+            <span>04</span>
+            <p>BEYOND LAUNCH</p>
+          </div>
 
           <h2>
-            Going live is
+            Built to launch.
             <br />
-            just the beginning.
+            <span>Ready to evolve.</span>
           </h2>
 
-          <p>
-            Crestlane can stay involved after launch to help keep your website
-            available, maintained and protected.
+          <p className="supportIntro">
+            A website should not become forgotten technology the day it goes
+            live. Crestlane can stay involved with monitoring, maintenance,
+            security and continued support.
           </p>
-
-          <a href="mailto:sales@crstlanedigital.com">
-            Ask about ongoing support <span>↗</span>
-          </a>
         </div>
 
-        <div className="monitor">
-          <div className="monitorHeader">
-            <span>MONITOR / 01</span>
+        <div className="supportSystem">
+          <div className="systemTop">
+            <span>CRESTLANE / SUPPORT</span>
 
             <div>
               <i />
-              SYSTEM ONLINE
+              AVAILABLE
             </div>
           </div>
 
-          <div className="monitorRows">
-            <div>
-              <span className="monitorIcon">●</span>
-              <p>Uptime Monitoring</p>
-              <strong>ACTIVE</strong>
-            </div>
+          <div className="systemCenter">
+            <div className="systemHalo haloOuter" />
+            <div className="systemHalo haloInner" />
 
-            <div>
-              <span className="monitorIcon">◇</span>
-              <p>Security Review</p>
-              <strong>READY</strong>
-            </div>
-
-            <div>
-              <span className="monitorIcon">↗</span>
-              <p>Performance Checks</p>
-              <strong>READY</strong>
-            </div>
-
-            <div>
-              <span className="monitorIcon">↻</span>
-              <p>Maintenance</p>
-              <strong>AVAILABLE</strong>
+            <div className="systemCore">
+              <i />
+              <span>ONLINE</span>
             </div>
           </div>
 
-          <div className="monitorFooter">
-            <span>CRESTLANE DIGITAL</span>
-            <span>OPERATIONS</span>
+          <div className="systemItems">
+            <div>
+              <span>01</span>
+              <p>UPTIME</p>
+            </div>
+
+            <div>
+              <span>02</span>
+              <p>SECURITY</p>
+            </div>
+
+            <div>
+              <span>03</span>
+              <p>MAINTENANCE</p>
+            </div>
+
+            <div>
+              <span>04</span>
+              <p>SUPPORT</p>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="cta">
-        <div>
-          <span>05 / LET&apos;S WORK</span>
+      <section className="contact">
+        <div className="contactAtmosphere" />
 
-          <h2>
-            Have something
-            <br />
-            in mind?
-          </h2>
-        </div>
+        <span className="contactLabel">05 / START SOMETHING</span>
 
-        <div className="ctaRight">
+        <h2>
+          Have something
+          <br />
+          worth <span>building?</span>
+        </h2>
+
+        <div className="contactBottom">
           <p>
-            Tell us about your business, what you&apos;re trying to build and
-            where you need help.
+            Tell us what you&apos;re working on and where you want to take it.
           </p>
 
           <a href="mailto:sales@crstlanedigital.com">
-            <span>sales@crstlanedigital.com</span>
-            <strong>↗</strong>
+            sales@crstlanedigital.com
+            <span>↗</span>
           </a>
         </div>
       </section>
 
       <footer>
-        <img src="/CrestLaneDigitalLogo.jpeg" alt="Crestlane Digital" />
+        <a href="#home">
+          <img src="/CrestLaneDigitalLogo.jpeg" alt="Crestlane Digital" />
+        </a>
 
-        <div className="footerLinks">
+        <nav>
+          <a href="#studio">Studio</a>
           <a href="#services">Services</a>
           <a href="#work">Work</a>
-          <a href="#support">Support</a>
+        </nav>
+
+        <div className="footerOnline">
+          <i />
+          ONLINE
         </div>
 
-        <span>© 2026 CRESTLANE DIGITAL</span>
+        <p>© 2026 CRESTLANE DIGITAL</p>
       </footer>
     </main>
+  );
+}
+
+function ProjectVisual({
+  project,
+}: {
+  project: (typeof projects)[number];
+}) {
+  return (
+    <div className="projectVisual">
+      <div className="browserBar">
+        <div className="browserDots">
+          <i />
+          <i />
+          <i />
+        </div>
+
+        <div className="browserAddress">
+          <i />
+          <span>{project.domain}</span>
+        </div>
+
+        <span className="browserMore">•••</span>
+      </div>
+
+      <div
+        className={`projectScreen ${
+          project.fit === "contain" ? "containImage" : ""
+        }`}
+      >
+        {project.image ? (
+          <img src={project.image} alt={`${project.name} preview`} />
+        ) : (
+          <div className="conceptVisual">
+            <div className="conceptCross">+</div>
+            <span>CRESTLANE / CONCEPT 01</span>
+            <strong>RX</strong>
+            <p>Independent Pharmacy</p>
+          </div>
+        )}
+
+        <div className="screenSheen" />
+      </div>
+    </div>
   );
 }
