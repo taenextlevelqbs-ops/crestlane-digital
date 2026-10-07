@@ -1,394 +1,327 @@
-const projects = [
-  {
-    number: "01",
-    name: "NOVA Sports Live",
-    category: "Sports Media Platform",
-    description:
-      "A digital platform for Northern Virginia high school sports, bringing scores, teams, rankings and coverage into one experience.",
-    image: "/novasportslive.png",
-    url: "https://novasportslive.com",
-    domain: "novasportslive.com",
-    fit: "cover",
-  },
-  {
-    number: "02",
-    name: "DMV Attack",
-    category: "Sports Organization",
-    description:
-      "A modern digital home for a growing regional football organization built around athletes, teams and the DMV Attack brand.",
-    image: "/dmvattack.jpeg",
-    url: "https://dmvattack.com",
-    domain: "dmvattack.com",
-    fit: "cover",
-  },
-  {
-    number: "03",
-    name: "Coach Tae QB",
-    category: "Athlete Development",
-    description:
-      "A focused training platform built around quarterback development, athlete growth and the Coach Tae brand.",
-    image: "/CoachTaeqb.png",
-    url: "https://coachtaeqb.com",
-    domain: "coachtaeqb.com",
-    fit: "cover",
-  },
-  {
-    number: "04",
-    name: "Maverick Athletics Training",
-    category: "Performance Training",
-    description:
-      "A digital presence for athlete performance, training programs and the Maverick Athletics brand.",
-    image: "/maverickathleticstraining.PNG",
-    url: "https://www.maverickathleticstraining.com/",
-    domain: "maverickathleticstraining.com",
-    fit: "contain",
-  },
-  {
-    number: "05",
-    name: "Merriton Federal",
-    category: "Federal Services",
-    description:
-      "A professional digital presence for Merriton Federal.",
-    image: "/Merriton Transparent Logo.png",
-    url: "https://www.merritonfederal.com/",
-    domain: "merritonfederal.com",
-    fit: "contain",
-  },
-];
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+import InquiryForm from "./InquiryForm";
+
 
 const services = [
   {
-    number: "01",
-    name: "Web Design",
-    description:
-      "Clean, distinctive digital experiences built around your brand and customers.",
+    title: "Websites that stand out.",
+    copy: "Make a remarkable first impression with a website that clearly explains your business and makes the next step easy.",
+    examples: "Business websites · Landing pages · Web applications",
   },
   {
-    number: "02",
-    name: "Development",
-    description:
-      "Fast, responsive websites built with modern technology and thoughtful architecture.",
+    title: "Software built around you.",
+    copy: "Give your staff and customers one simple place to manage information, register, and get things done.",
+    examples: "Dashboards · Customer portals · Registration systems",
   },
   {
-    number: "03",
-    name: "Digital Systems",
-    description:
-      "Practical digital solutions designed to improve how your business operates.",
+    title: "Less busywork. More business.",
+    copy: "Connect your tools, automate repetitive tasks, and add AI where it helps people find answers or work faster.",
+    examples: "Follow-ups · Booking workflows · AI assistants",
   },
   {
-    number: "04",
-    name: "Security & Monitoring",
-    description:
-      "Website hardening, uptime awareness and preventative technical measures.",
+    title: "Support beyond launch.",
+    copy: "Keep your website and systems moving forward with agreed maintenance, monitoring, and improvements.",
+    examples: "Maintenance · Integration support · Ongoing improvements",
+  },
+];
+
+const projects = [
+  {
+    name: "NOVA Sports Live",
+    category: "SPORTS INFORMATION PLATFORM",
+    copy: "Scores, teams, rankings, and coverage brought together for Northern Virginia sports.",
+    image: "/novasportslive.png",
+    url: "https://novasportslive.com",
   },
   {
-    number: "05",
-    name: "Ongoing Support",
-    description:
-      "Maintenance, improvements and technical support after your website goes live.",
+    name: "DMV Attack",
+    category: "WEBSITE + ORGANIZATION TOOLS",
+    copy: "A football organization's digital home, with tryout registration and coach administration tools.",
+    image: "/dmvattack.jpeg",
+    url: "https://dmvattack.com",
+  },
+  {
+    name: "Coach Tae QB",
+    category: "ATHLETE DEVELOPMENT",
+    copy: "A clear home for quarterback training, programs, and parent inquiries.",
+    image: "/CoachTaeqb.png",
+    url: "https://coachtaeqb.com",
+  },
+  {
+    name: "Maverick Athletics Training",
+    category: "PERFORMANCE TRAINING",
+    copy: "A branded website introducing the business and its training programs.",
+    image: "/maverickathleticstraining.PNG",
+    url: "https://www.maverickathleticstraining.com/",
+  },
+  {
+    name: "Merriton Federal",
+    category: "PROFESSIONAL SERVICES",
+    copy: "A professional digital presence presenting the company and its services.",
+    image: "/Merriton Transparent Logo.png",
+    url: "https://www.merritonfederal.com/",
+  },
+];
+
+const workflows = [
+  {
+    label: "Service business",
+    title: "From inquiry to appointment.",
+    steps: [
+      "Customer sends an inquiry",
+      "Your team receives the details",
+      "Follow-up offers a booking link",
+      "Customer gets a reminder",
+    ],
+  },
+  {
+    label: "Sports organization",
+    title: "From registration to roster.",
+    steps: [
+      "Athlete registers for tryouts",
+      "Coach records an evaluation",
+      "Owner approves an offer",
+      "Accepted athlete joins the roster",
+    ],
+  },
+  {
+    label: "Business team",
+    title: "From request to resolution.",
+    steps: [
+      "Employee submits a request",
+      "Request reaches the approver",
+      "Approved tasks are assigned",
+      "Dashboard shows what remains",
+    ],
   },
 ];
 
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [workflow, setWorkflow] = useState(0);
+  const [step, setStep] = useState(0);
+  const current = workflows[workflow];
+
   return (
-    <main>
-      <section className="hero" id="home">
-        <div className="heroAtmosphere" />
-        <div className="heroTexture" />
+    <main id="home">
+      <a className="skip-link" href="#services">Skip to services</a>
 
-        <header className="header">
-          <div className="brandSpace" aria-hidden="true" />
+      <header className="header wrap">
+        
+        <a className="brand crestlane-logo-link" href="#home" aria-label="Crestlane Digital home">
+          <Image
+            src="/CrestLaneDigitalLogo.jpeg"
+            alt="Crestlane Digital"
+            width={160}
+            height={160}
+            priority
+            className="crestlane-header-logo"
+          />
+        </a>
+        <button
+          className="menu-button"
+          aria-expanded={menuOpen}
+          aria-controls="main-navigation"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? "Close" : "Menu"}
+        </button>
+        <nav
+          id="main-navigation"
+          aria-label="Main navigation"
+          className={menuOpen ? "navigation open" : "navigation"}
+          onClick={() => setMenuOpen(false)}
+        >
+          <a href="#services">Services</a>
+          <a href="#work">Our work</a>
+          <a href="#about">About</a>
+          <a className="nav-contact" href="#contact">Start a project ↗</a>
+        </nav>
+      </header>
 
-          <nav>
-            <a href="#studio">Studio</a>
-            <a href="#services">Services</a>
-            <a href="#work">Work</a>
-          </nav>
-
-          <a className="headerContact" href="mailto:sales@crstlanedigital.com">
-            Start a project <span>↗</span>
-          </a>
-        </header>
-
-        <div className="heroContent">
-          <span className="heroLabel">CRESTLANE DIGITAL</span>
-
-          <h1>
-            Digital experiences
-            <br />
-            for what&apos;s next.
-          </h1>
+      <section className="hero">
+        <div className="stars" aria-hidden="true" />
+        <div className="space-scene" aria-hidden="true">
+          <div className="planet" />
+          <div className="orbit orbit-one" />
+          <div className="orbit orbit-two" />
+          <div className="satellite" />
         </div>
 
-        <div className="heroFoot">
-          <span>DESIGN / DEVELOPMENT / DIGITAL SYSTEMS</span>
+        <div className="hero-content wrap">
+          <p className="eyebrow"><span className="status-dot" />YOUR NEXT CHAPTER, BUILT.</p>
+          <h1>A better website.<br />A smarter business.<br /><span>A new orbit.</span></h1>
+          <p className="hero-description">
+            Websites, custom software, and automation that help your
+            business look exceptional and run more smoothly.
+          </p>
+          <div className="buttons">
+            <a className="button primary" href="#contact">Let’s build something ↗</a>
+            <a className="button secondary" href="#work">Explore our work ↓</a>
+          </div>
+          <p className="hero-note">For businesses, sports organizations, and ambitious ideas.</p>
+        </div>
 
-          <a href="#studio">
-            EXPLORE <i>↓</i>
-          </a>
+        <div className="hero-bottom wrap">
+          <span>DESIGN WITH IMPACT. TECHNOLOGY WITH PURPOSE.</span>
+          <a href="#services">Discover what’s possible ↓</a>
         </div>
       </section>
 
-      <section className="studio" id="studio">
-        <div className="sectionLabel">
-          <span>01</span>
-          <p>THE STUDIO</p>
+      <section className="section wrap" id="services">
+        <div className="section-heading">
+          <p className="eyebrow">01 / WHAT WE BUILD</p>
+          <h2>Big possibilities.<br /><span>Simple experiences.</span></h2>
+          <p>You bring the idea—or the problem. We turn it into technology people can actually use.</p>
         </div>
-
-        <div className="studioContent">
-          <h2>
-            Thoughtful technology.
-            <br />
-            <span>Built with purpose.</span>
-          </h2>
-
-          <div className="studioCopy">
-            <p>
-              Crestlane Digital is a creative technology studio building
-              modern websites and digital systems for businesses ready to
-              strengthen how they operate and show up online.
-            </p>
-
-            <p>
-              We bring strategy, design, development and continued support
-              together so the finished product looks right, works right and
-              keeps moving forward.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="services" id="services">
-        <div className="sectionHeader">
-          <div className="sectionLabel">
-            <span>02</span>
-            <p>CAPABILITIES</p>
-          </div>
-
-          <h2>
-            From first idea
-            <br />
-            to <span>what comes next.</span>
-          </h2>
-        </div>
-
-        <div className="serviceList">
-          {services.map((service) => (
-            <article key={service.number}>
-              <span className="serviceNumber">{service.number}</span>
-
-              <h3>{service.name}</h3>
-
-              <p>{service.description}</p>
-
-              <span className="serviceArrow">↗</span>
+        <div className="services-grid">
+          {services.map((service, index) => (
+            <article className="service-card" key={service.title}>
+              <span className="number">0{index + 1}</span>
+              <h3>{service.title}</h3>
+              <p>{service.copy}</p>
+              <div className="service-examples">{service.examples}</div>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="work" id="work">
-        <div className="sectionHeader workHeader">
-          <div className="sectionLabel">
-            <span>03</span>
-            <p>SELECTED WORK</p>
-          </div>
-
+      <section className="automation-section">
+        <div className="wrap split">
           <div>
-            <h2>
-              Things we&apos;ve
-              <br />
-              <span>put into the world.</span>
-            </h2>
-
-            <p className="workIntro">
-              Selected websites, platforms and digital concepts designed and
-              developed by Crestlane.
+            <p className="eyebrow">02 / SEE THE POSSIBILITY</p>
+            <h2>Your process.<br /><span>Connected.</span></h2>
+            <p className="section-copy">
+              Every repeated task is a place to start. Explore how a
+              custom workflow could make life easier for your team.
             </p>
+            <div className="workflow-tabs" role="group" aria-label="Choose a workflow example">
+              {workflows.map((item, index) => (
+                <button
+                  key={item.label}
+                  aria-pressed={index === workflow}
+                  onClick={() => { setWorkflow(index); setStep(0); }}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="workflow-panel">
+            <div className="panel-top">
+              <span><span className="status-dot" />WORKFLOW EXAMPLE</span>
+              <span>0{workflow + 1}</span>
+            </div>
+            <h3>{current.title}</h3>
+            <p className="demo-note">An illustration of what a connected process could look like.</p>
+            <ol>
+              {current.steps.map((item, index) => (
+                <li className={index <= step ? "active" : ""} key={item}>
+                  <span className="step-number">{index < step ? "✓" : `0${index + 1}`}</span>
+                  <span>{item}</span>
+                  {index === step && <span className="step-label">Current step</span>}
+                </li>
+              ))}
+            </ol>
+            <div className="panel-bottom">
+              <span aria-live="polite">Step {step + 1} of 4</span>
+              <button
+                className="button secondary"
+                onClick={() => setStep((step + 1) % 4)}
+              >
+                {step === 3 ? "Restart example" : "Next step"} →
+              </button>
+            </div>
           </div>
         </div>
+      </section>
 
-        <div className="projectGrid logoGrid">
+      <section className="section wrap" id="work">
+        <div className="section-heading">
+          <p className="eyebrow">03 / SELECTED WORK</p>
+          <h2>Ideas, brought<br /><span>into the real world.</span></h2>
+          <p>Websites and platforms built around the people who use them.</p>
+        </div>
+        <div className="project-grid">
           {projects.map((project) => (
             <a
-              className="logoProject"
+              className="project"
+              key={project.name}
               href={project.url}
               target="_blank"
-              rel="noreferrer"
-              key={project.number}
+              rel="noopener noreferrer"
             >
-              <div className="logoProjectTop">
-                <span>{project.number}</span>
-                <span>{project.category}</span>
+              <div className="project-top">
+                <span>{project.category}</span><span aria-hidden="true">↗</span>
               </div>
-
-              <div className="logoProjectVisual">
-                <img
-                  src={project.image}
-                  alt={`${project.name} logo`}
-                  className={
-                    project.fit === "contain" ? "maverickLogo" : ""
-                  }
-                />
+              <div className="project-image">
+                <Image src={project.image} alt={`${project.name} logo`} width={300} height={180} />
               </div>
-
-              <div className="logoProjectBottom">
-                <div>
-                  <h3>{project.name}</h3>
-                  <p>{project.domain}</p>
-                </div>
-
-                <span className="logoProjectArrow">↗</span>
-              </div>
+              <h3>{project.name}</h3>
+              <p>{project.copy}</p>
+              <span className="project-link">
+                Visit website ↗<span className="sr-only"> (opens in a new tab)</span>
+              </span>
             </a>
           ))}
         </div>
       </section>
 
-      <section className="support">
-        <div className="supportContent">
-          <div className="sectionLabel">
-            <span>04</span>
-            <p>BEYOND LAUNCH</p>
-          </div>
-
-          <h2>
-            Built to launch.
-            <br />
-            <span>Ready to evolve.</span>
-          </h2>
-
-          <p className="supportIntro">
-            A website should not become forgotten technology the day it goes
-            live. Crestlane can stay involved with monitoring, maintenance,
-            security and continued support.
-          </p>
+      <section className="section wrap about split" id="about">
+        <div>
+          <p className="eyebrow">04 / THE PEOPLE BEHIND THE TECHNOLOGY</p>
+          <h2>Built with care.<br /><span>Made to make sense.</span></h2>
         </div>
-
-        <div className="supportSystem">
-          <div className="systemTop">
-            <span>CRESTLANE / SUPPORT</span>
-
-            <div>
-              <i />
-              AVAILABLE
-            </div>
-          </div>
-
-          <div className="systemCenter">
-            <div className="systemHalo haloOuter" />
-            <div className="systemHalo haloInner" />
-
-            <div className="systemCore">
-              <i />
-              <span>ONLINE</span>
-            </div>
-          </div>
-
-          <div className="systemItems">
-            <div>
-              <span>01</span>
-              <p>UPTIME</p>
-            </div>
-
-            <div>
-              <span>02</span>
-              <p>SECURITY</p>
-            </div>
-
-            <div>
-              <span>03</span>
-              <p>MAINTENANCE</p>
-            </div>
-
-            <div>
-              <span>04</span>
-              <p>SUPPORT</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="contact">
-        <div className="contactAtmosphere" />
-
-        <span className="contactLabel">05 / START SOMETHING</span>
-
-        <h2>
-          Have something
-          <br />
-          worth <span>building?</span>
-        </h2>
-
-        <div className="contactBottom">
+        <div className="about-copy">
           <p>
-            Tell us what you&apos;re working on and where you want to take it.
+            Crestlane Digital brings design, development, and practical IT
+            experience together to help businesses and organizations move forward.
           </p>
-
-          <a href="mailto:sales@crstlanedigital.com">
-            sales@crstlanedigital.com
-            <span>↗</span>
-          </a>
+          <p>
+            We start by understanding how you work. Then we build the right
+            website, software, or workflow—with clear communication from the
+            first conversation through launch.
+          </p>
+          <div className="process">
+            {["Understand your goals", "Build and refine", "Launch and support"].map((item, index) => (
+              <div key={item}><span>0{index + 1}</span>{item}</div>
+            ))}
+          </div>
         </div>
       </section>
 
-      <footer>
-        <a href="#home">
-          <img src="/CrestLaneDigitalLogo.jpeg" alt="Crestlane Digital" />
-        </a>
-
-        <nav>
-          <a href="#studio">Studio</a>
-          <a href="#services">Services</a>
-          <a href="#work">Work</a>
-        </nav>
-
-        <div className="footerOnline">
-          <i />
-          ONLINE
+      <section className="contact-section" id="contact">
+        <div className="wrap split">
+          <div>
+            <p className="eyebrow">05 / LET’S MAKE IT HAPPEN</p>
+            <h2>What’s your<br /><span>next big thing?</span></h2>
+            <p className="section-copy">
+              A new website? A better way to run your organization?
+              Tell us what you have in mind.
+            </p>
+          </div>
+          <InquiryForm />
         </div>
+      </section>
 
-        <p>© 2026 CRESTLANE DIGITAL</p>
+      <footer className="wrap">
+        
+        <a className="footer-brand crestlane-footer-link" href="#home" aria-label="Crestlane Digital home">
+          <Image
+            src="/CrestLaneDigitalLogo2.jpeg"
+            alt="Crestlane Digital"
+            width={190}
+            height={190}
+            className="crestlane-footer-logo"
+          />
+        </a>
+        <p>Websites. Software. Smarter operations.</p>
+        <a href="#home">Back to top ↑</a>
+        <span>© {new Date().getFullYear()} Crestlane Digital</span>
       </footer>
     </main>
-  );
-}
-
-function ProjectVisual({
-  project,
-}: {
-  project: (typeof projects)[number];
-}) {
-  return (
-    <div className="projectVisual">
-      <div className="browserBar">
-        <div className="browserDots">
-          <i />
-          <i />
-          <i />
-        </div>
-
-        <div className="browserAddress">
-          <i />
-          <span>{project.domain}</span>
-        </div>
-
-        <span className="browserMore">•••</span>
-      </div>
-
-      <div
-        className={`projectScreen ${
-          project.fit === "contain" ? "containImage" : ""
-        }`}
-      >
-        {project.image ? (
-          <img src={project.image} alt={`${project.name} preview`} />
-        ) : (
-          <div className="conceptVisual" />
-        )}
-
-        <div className="screenSheen" />
-      </div>
-    </div>
   );
 }

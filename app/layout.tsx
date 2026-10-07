@@ -17,16 +17,16 @@ export const metadata: Metadata = {
 
   title: "Crestlane Digital",
   description:
-    "Web design, development, digital systems, security, monitoring and ongoing support.",
+    "Custom websites, business software, portals, workflow automation, and ongoing support for businesses and sports organizations.",
 
   openGraph: {
     title: "Crestlane Digital",
-    description: "Digital experiences for what's next.",
+    description: "Websites. Software. Smarter operations.",
     url: "https://crestlanedigital.com",
     siteName: "Crestlane Digital",
     images: [
       {
-        url: "/crestlane-share.jpg",
+        url: "/CrestLaneDigitalLogo.jpeg",
         alt: "Crestlane Digital",
       },
     ],
@@ -36,8 +36,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Crestlane Digital",
-    description: "Digital experiences for what's next.",
-    images: ["/crestlane-share.jpg"],
+    description: "Websites. Software. Smarter operations.",
+    images: ["/CrestLaneDigitalLogo.jpeg"],
   },
 
   icons: {
