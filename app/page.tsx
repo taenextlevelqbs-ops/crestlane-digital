@@ -8,25 +8,65 @@ import InquiryForm from "./InquiryForm";
 
 const services = [
   {
-    title: "Websites that stand out.",
-    copy: "Make a remarkable first impression with a website that clearly explains your business and makes the next step easy.",
-    examples: "Business websites · Landing pages · Web applications",
+    "title": "Websites that stand out.",
+    "copy": "Turn visitors into inquiries with a fast, polished website that explains what you offer and makes taking action easy.",
+    "examples": "Business websites · Online stores · Booking · Redesigns",
+    "details": [
+      "Business websites and landing pages with clear service information and calls to action.",
+      "Mobile-friendly layouts, accessible navigation, and search engine fundamentals.",
+      "Online stores, appointment booking, inquiry forms, and payment integrations.",
+      "Website redesigns, content migration, analytics, and launch support."
+    ],
+    "outcome": "A clear digital home that helps people find you, trust you, and take the next step."
   },
   {
-    title: "Software built around you.",
-    copy: "Give your staff and customers one simple place to manage information, register, and get things done.",
-    examples: "Dashboards · Customer portals · Registration systems",
+    "title": "Software built around you.",
+    "copy": "Bring the work you manage across spreadsheets, messages, and separate tools into one practical system.",
+    "examples": "Dashboards · Portals · Registration · Reporting",
+    "details": [
+      "Customer and parent portals for accessing information and managing requests.",
+      "Staff dashboards with access based on each person's responsibilities.",
+      "Registration, check-in, team rosters, evaluations, and organization tools.",
+      "Payment tracking, reporting, and integrations with the platforms you already use."
+    ],
+    "outcome": "Less information scattered across different places. More visibility into what needs attention."
   },
   {
-    title: "Less busywork. More business.",
-    copy: "Connect your tools, automate repetitive tasks, and add AI where it helps people find answers or work faster.",
-    examples: "Follow-ups · Booking workflows · AI assistants",
+    "title": "Less busywork. More business.",
+    "copy": "Connect your tools and automate repeatable tasks, with AI added where it can provide a useful, reliable shortcut.",
+    "examples": "Lead follow-up · Reminders · Connected tools · AI",
+    "details": [
+      "Inquiry routing, lead tracking, and follow-up workflows.",
+      "Appointment reminders, registration confirmations, and status notifications.",
+      "Connections between forms, email, calendars, databases, and business software.",
+      "AI-assisted answers, document summaries, and draft content with human review where needed."
+    ],
+    "outcome": "Fewer repetitive steps and a more consistent experience for your customers and team."
   },
   {
-    title: "Support beyond launch.",
-    copy: "Keep your website and systems moving forward with agreed maintenance, monitoring, and improvements.",
-    examples: "Maintenance · Integration support · Ongoing improvements",
+    "title": "Security built into your website.",
+    "copy": "Protect the information people share with you through practical safeguards designed around your website and its users.",
+    "examples": "Secure access · Form protection · Updates · Backups",
+    "details": [
+      "HTTPS setup, secure configuration, and careful handling of API keys and credentials.",
+      "Account access controls and multifactor authentication setup where supported.",
+      "Form validation, spam controls, and request limits tailored to the application.",
+      "Dependency reviews, security updates, monitoring, and backup planning within an agreed scope."
+    ],
+    "outcome": "A stronger foundation for protecting your website, accounts, and customer information."
   },
+  {
+    "title": "Support beyond launch.",
+    "copy": "Keep your website and systems useful as your business grows, with a clear plan for maintenance and improvements.",
+    "examples": "Maintenance · Monitoring · Troubleshooting · Improvements",
+    "details": [
+      "Agreed maintenance plans for software updates and routine checks.",
+      "Website availability monitoring and troubleshooting.",
+      "Content changes, new features, and integration support.",
+      "Documentation, handover, and guidance for the people managing your tools."
+    ],
+    "outcome": "A dependable point of contact and a clear path for keeping your technology moving forward."
+  }
 ];
 
 const projects = [
@@ -121,7 +161,7 @@ export default function Home() {
           <p className="eyebrow"><span className="status-dot" />YOUR NEXT CHAPTER, BUILT.</p>
           <h1>A better website.<br />A smarter business.<br /><span>A new orbit.</span></h1>
           <p className="hero-description">
-            Websites, custom software, and automation that help your
+            Websites, custom software, automation, and website security that help your
             business look exceptional and run more smoothly.
           </p>
           <div className="buttons">
@@ -150,6 +190,14 @@ export default function Home() {
               <h3>{service.title}</h3>
               <p>{service.copy}</p>
               <div className="service-examples">{service.examples}</div>
+              <details className="service-details">
+                <summary>Explore this service <span aria-hidden="true">＋</span></summary>
+                <ul>
+                  {service.details.map((detail) => <li key={detail}>{detail}</li>)}
+                </ul>
+                <p className="service-outcome">{service.outcome}</p>
+                <a className="service-inquiry" href="#contact">Discuss your project ↗</a>
+              </details>
             </article>
           ))}
         </div>
@@ -217,11 +265,17 @@ export default function Home() {
             <p className="eyebrow">05 / LET’S MAKE IT HAPPEN</p>
             <h2>What’s your<br /><span>next big thing?</span></h2>
             <p className="section-copy">
-              A new website? A better way to run your organization?
-              Tell us what you have in mind.
+              Tell us what you want to build, improve, or protect.
+              Share what you know—we’ll help you figure out the next steps.
             </p>
           </div>
-          <InquiryForm />
+          <div className="inquiry-panel">
+            <div className="direct-contact">
+              <a href="tel:+17034314468">Call (703) 431-4468 ↗</a>
+              <a href="mailto:sales@crestlanedigital.com">sales@crestlanedigital.com ↗</a>
+            </div>
+            <InquiryForm />
+          </div>
         </div>
       </section>
 

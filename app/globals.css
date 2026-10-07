@@ -581,3 +581,117 @@ footer > span { width: 100%; font-size: 11px; }
 @media (prefers-reduced-motion: reduce) {
   .workflow-progress span { transition: none; }
 }
+
+/* CRESTLANE final service and inquiry details */
+.service-details {
+  margin-top: 22px;
+  border-top: 1px solid #ffffff18;
+  padding-top: 18px;
+}
+.service-details summary {
+  cursor: pointer;
+  color: #e0e7ff;
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 44px;
+}
+.service-details summary span { margin-left: 12px; color: var(--cyan); }
+.service-details ul {
+  padding-left: 20px;
+  margin: 12px 0 20px;
+  color: var(--muted);
+}
+.service-details li {
+  font-size: 14px;
+  line-height: 1.8;
+  margin-bottom: 12px;
+}
+.service-card .service-outcome {
+  font-size: 14px;
+  padding: 16px;
+  background: #91b5ff0a;
+  border: 1px solid #91b5ff20;
+  border-radius: 12px;
+}
+.service-inquiry {
+  display: inline-block;
+  margin-top: 18px;
+  padding-block: 10px;
+  font-size: 14px;
+  color: var(--cyan);
+}
+.inquiry-panel { min-width: 0; }
+.direct-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  margin-bottom: 24px;
+}
+.direct-contact a {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--cyan);
+  overflow-wrap: anywhere;
+  padding-block: 8px;
+}
+.inquiry-intro h3 { margin: 0 0 10px; font-size: 25px; }
+.inquiry-intro p {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+.inquiry-interests {
+  min-width: 0;
+  border: 1px solid #a1b5ef2b;
+  border-radius: 14px;
+  padding: 18px;
+  margin: 0;
+}
+.inquiry-interests legend {
+  padding: 0 8px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #d5dbec;
+}
+.interest-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.contact-form .interest-options label {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  min-height: 44px;
+  border-radius: 9px;
+  background: #ffffff04;
+  cursor: pointer;
+  line-height: 1.6;
+}
+.contact-form .interest-options input {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  accent-color: #a4baff;
+}
+.contact-form input,
+.contact-form select,
+.contact-form textarea { min-width: 0; width: 100%; }
+.service-details summary:focus-visible,
+.service-inquiry:focus-visible,
+.direct-contact a:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 5px;
+}
+@media (max-width: 700px) {
+  .interest-options { grid-template-columns: 1fr; }
+  .inquiry-interests { padding: 14px; }
+  .inquiry-intro h3 { font-size: 23px; }
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea { font-size: 16px; }
+}
