@@ -487,3 +487,97 @@ footer > span { width: 100%; font-size: 11px; }
     height: 110px;
   }
 }
+
+/* CRESTLANE — enhanced workflow */
+.upgraded-workflow {
+  background:
+    radial-gradient(ellipse at 80% 30%, #4a5fb52b, transparent 55%),
+    radial-gradient(ellipse at 0% 100%, #184a5920, transparent 50%),
+    #080b15;
+}
+.upgraded-workflow .split { align-items: center; }
+.workflow-intro h2 { font-size: clamp(38px, 4vw, 58px); }
+.workflow-benefit {
+  display: flex; align-items: center; gap: 15px;
+  margin-top: 32px; padding: 20px 0;
+  border-top: 1px solid var(--line);
+}
+.workflow-benefit > span {
+  display: grid; place-items: center;
+  width: 38px; height: 38px; flex-shrink: 0;
+  border: 1px solid #9fb5ff44; border-radius: 12px;
+  background: #9fb5ff0b; color: var(--cyan);
+}
+.workflow-benefit p {
+  margin: 0; color: #d6def1; font-size: 15px; line-height: 1.6;
+}
+.workflow-contact-link { color: var(--accent); font-size: 14px; }
+.enhanced-panel {
+  border-color: #a9baff55;
+  background: linear-gradient(145deg, #171f35, #0b1020);
+  box-shadow: 0 25px 90px #0005, 0 0 70px #778aff08;
+}
+.enhanced-panel > h3 { font-size: 28px; line-height: 1.2; }
+.workflow-progress {
+  height: 3px; background: #c6d5ff16;
+  border-radius: 4px; overflow: hidden; margin: 25px 0;
+}
+.workflow-progress span {
+  display: block; height: 100%;
+  background: linear-gradient(90deg, #939dff, #83e2f2);
+  transition: width .3s;
+}
+.workflow-step-picker {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  margin-bottom: 22px;
+}
+.workflow-step-picker button {
+  text-align: left; display: flex; align-items: center; gap: 10px;
+  padding: 13px; min-height: 58px; border: 1px solid var(--line);
+  border-radius: 10px; background: #ffffff03;
+  color: var(--muted); font-size: 12px;
+}
+.workflow-step-picker button > span {
+  font-size: 11px; color: var(--accent); flex-shrink: 0;
+}
+.workflow-step-picker button[aria-pressed="true"] {
+  border-color: #a4baff88; background: #a4baff12; color: white;
+}
+.workflow-preview {
+  background: #070c18; border: 1px solid #a1b5ef2b;
+  border-radius: 13px; padding: 22px;
+}
+.preview-heading { display: flex; align-items: center; gap: 14px; }
+.preview-icon {
+  display: grid; place-items: center; width: 42px; height: 42px;
+  border-radius: 12px; background: #86b4ff15;
+  color: var(--cyan); font-size: 22px;
+}
+.preview-heading p {
+  margin: 0 0 5px; font-size: 10px;
+  letter-spacing: .12em; color: var(--accent);
+}
+.preview-heading h4 { margin: 0; font-size: 17px; font-weight: 500; }
+.preview-fields { margin: 20px 0; }
+.preview-fields p {
+  margin: 0; padding: 10px 0;
+  border-bottom: 1px solid #ffffff0c;
+  color: #bfc9de; font-size: 13px; line-height: 1.5;
+}
+.preview-result {
+  padding-top: 4px; font-size: 12px;
+  color: var(--cyan); line-height: 1.7;
+}
+.workflow-explanation {
+  color: var(--muted); font-size: 14px;
+  line-height: 1.7; margin: 20px 0;
+}
+@media (max-width: 700px) {
+  .enhanced-panel { padding: 22px; }
+  .enhanced-panel > h3 { font-size: 25px; }
+  .workflow-step-picker button { padding: 10px; font-size: 11px; }
+  .workflow-preview { padding: 17px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .workflow-progress span { transition: none; }
+}

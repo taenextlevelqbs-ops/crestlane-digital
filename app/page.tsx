@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import WorkflowDemo from "./WorkflowDemo";
 import InquiryForm from "./InquiryForm";
 
 
@@ -66,44 +67,9 @@ const projects = [
   },
 ];
 
-const workflows = [
-  {
-    label: "Service business",
-    title: "From inquiry to appointment.",
-    steps: [
-      "Customer sends an inquiry",
-      "Your team receives the details",
-      "Follow-up offers a booking link",
-      "Customer gets a reminder",
-    ],
-  },
-  {
-    label: "Sports organization",
-    title: "From registration to roster.",
-    steps: [
-      "Athlete registers for tryouts",
-      "Coach records an evaluation",
-      "Owner approves an offer",
-      "Accepted athlete joins the roster",
-    ],
-  },
-  {
-    label: "Business team",
-    title: "From request to resolution.",
-    steps: [
-      "Employee submits a request",
-      "Request reaches the approver",
-      "Approved tasks are assigned",
-      "Dashboard shows what remains",
-    ],
-  },
-];
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [workflow, setWorkflow] = useState(0);
-  const [step, setStep] = useState(0);
-  const current = workflows[workflow];
 
   return (
     <main id="home">
@@ -189,55 +155,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="automation-section">
-        <div className="wrap split">
-          <div>
-            <p className="eyebrow">02 / SEE THE POSSIBILITY</p>
-            <h2>Your process.<br /><span>Connected.</span></h2>
-            <p className="section-copy">
-              Every repeated task is a place to start. Explore how a
-              custom workflow could make life easier for your team.
-            </p>
-            <div className="workflow-tabs" role="group" aria-label="Choose a workflow example">
-              {workflows.map((item, index) => (
-                <button
-                  key={item.label}
-                  aria-pressed={index === workflow}
-                  onClick={() => { setWorkflow(index); setStep(0); }}
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div className="workflow-panel">
-            <div className="panel-top">
-              <span><span className="status-dot" />WORKFLOW EXAMPLE</span>
-              <span>0{workflow + 1}</span>
-            </div>
-            <h3>{current.title}</h3>
-            <p className="demo-note">An illustration of what a connected process could look like.</p>
-            <ol>
-              {current.steps.map((item, index) => (
-                <li className={index <= step ? "active" : ""} key={item}>
-                  <span className="step-number">{index < step ? "✓" : `0${index + 1}`}</span>
-                  <span>{item}</span>
-                  {index === step && <span className="step-label">Current step</span>}
-                </li>
-              ))}
-            </ol>
-            <div className="panel-bottom">
-              <span aria-live="polite">Step {step + 1} of 4</span>
-              <button
-                className="button secondary"
-                onClick={() => setStep((step + 1) % 4)}
-              >
-                {step === 3 ? "Restart example" : "Next step"} →
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <WorkflowDemo />
 
       <section className="section wrap" id="work">
         <div className="section-heading">
