@@ -9,6 +9,51 @@ export default function InteractiveGlobe() {
   const drag = useRef<{ id: number; x: number } | null>(null);
   const paused = useRef(false);
   const [playing, setPlaying] = useState(true);
+  const [selected, setSelected] = useState(0);
+
+  const destinations = [
+    {
+      name: "Websites",
+      heading: "Make your first impression count.",
+      description: "A clear, polished website that helps people understand your business and take the next step.",
+    },
+    {
+      name: "Software",
+      heading: "Bring your operations together.",
+      description: "Portals, dashboards, and registration tools built around your customers and team.",
+    },
+    {
+      name: "Automation & AI",
+      heading: "Give repetitive work a better system.",
+      description: "Connect your tools, streamline follow-ups, and use AI where it helps your team.",
+    },
+    {
+      name: "Security",
+      heading: "Build on a stronger foundation.",
+      description: "Practical website safeguards, access controls, updates, and backup planning.",
+    },
+    {
+      name: "Support",
+      heading: "Keep improving after launch.",
+      description: "Maintenance, troubleshooting, and ongoing improvements as your needs change.",
+    },
+  ];
+
+  function selectDestination(index: number) {
+    setSelected(index);
+    angle.current += 0.45;
+    window.dispatchEvent(new CustomEvent("crestlane-service", { detail: index }));
+  }
+
+  function exploreDestination() {
+    window.dispatchEvent(new CustomEvent("crestlane-service", { detail: selected }));
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.getElementById("services")?.scrollIntoView({
+      behavior: reducedMotion ? "auto" : "smooth",
+      block: "start",
+    });
+  }
+
 
   useEffect(() => {
     const el = canvas.current;
@@ -194,7 +239,42 @@ export default function InteractiveGlobe() {
         }}>
         <canvas ref={canvas} aria-hidden="true" />
       </div>
+      
+      <div className="globe-service-console">
+        <p className="globe-purpose-label">YOUR NEXT MOVE STARTS HERE</p>
+        <h2>What would you like to build?</h2>
+        <div className="globe-destinations" aria-label="Choose a Crestlane service">
+          {destinations.map((destination, index) => (
+            <button
+              type="button"
+              key={destination.name}
+              aria-pressed={selected === index}
+              aria-controls="globe-destination-preview"
+              onClick={() => selectDestination(index)}
+            >
+              <span className="destination-light" aria-hidden="true" />
+              {destination.name}
+            </button>
+          ))}
+        </div>
+        <div id="globe-destination-preview" className="globe-destination-preview"
+          aria-live="polite" aria-atomic="true">
+          <span className="destination-category">{destinations[selected].name}</span>
+          <h3>{destinations[selected].heading}</h3>
+          <p>{destinations[selected].description}</p>
+        </div>
+        <button type="button" className="globe-explore-button"
+          onClick={exploreDestination}>
+          Explore this service
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"
+            aria-hidden="true" focusable="false">
+            <path d="M4 12h16m-7-7 7 7-7 7" />
+          </svg>
+        </button>
+      </div>
       <div className="globe-controls">
+
         <span>DRAG TO EXPLORE</span>
         <button type="button" aria-pressed={!playing}
           onClick={() => {

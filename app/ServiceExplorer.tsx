@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Arrow } from "./StudioIcons";
 
 type Service = {
@@ -15,6 +15,17 @@ const labels = ["Websites", "Software & portals", "Automation & AI", "Website se
 
 export default function ServiceExplorer({ services }: { services: Service[] }) {
   const [active, setActive] = useState(0);
+  useEffect(() => {
+    function selectService(event: Event) {
+      const index = (event as CustomEvent<number>).detail;
+      if (Number.isInteger(index) && index >= 0 && index < services.length) {
+        setActive(index);
+      }
+    }
+    window.addEventListener("crestlane-service", selectService);
+    return () => window.removeEventListener("crestlane-service", selectService);
+  }, [services.length]);
+
   const service = services[active];
   if (!service) return null;
 
