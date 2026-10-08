@@ -1,104 +1,191 @@
 "use client";
-import { iconText } from "./StudioIcons";
+
 import { useState } from "react";
+import { Arrow } from "./StudioIcons";
+
 const examples = [
-    {
-        label: "Service business",
-        title: "Turn interest into appointments.",
-        benefit: "Give every inquiry a clear next step.",
-        steps: [
-            { title: "Capture the inquiry", detail: "A website form collects the customer's contact details and what they need.", preview: "New customer inquiry", fields: ["Service: Initial consultation", "Preferred time: Next week", "Contact details: Collected"], action: "Ready for your team" },
-            { title: "Notify your team", detail: "The right person receives the request, with the information needed to follow up.", preview: "Team notification", fields: ["Inquiry: Initial consultation", "Assigned to: Front desk", "Status: Awaiting follow-up"], action: "One place to track the request" },
-            { title: "Offer a booking", detail: "An approved follow-up gives the customer a booking link and clear instructions.", preview: "Customer follow-up", fields: ["Thanks for getting in touch.", "Choose a time that works for you.", "Booking link: Included"], action: "A simple next step" },
-            { title: "Send a reminder", detail: "Once booked, the customer receives appointment details and a scheduled reminder.", preview: "Appointment reminder", fields: ["Appointment: Confirmed", "Time and location: Included", "Reminder: Scheduled"], action: "Keep everyone informed" },
-        ],
-    },
-    {
-        label: "Sports organization",
-        title: "One path from tryout to team.",
-        benefit: "Keep coaches and families on the same page.",
-        steps: [
-            { title: "Register the athlete", detail: "Families submit athlete information through a simple registration form.", preview: "Tryout registration", fields: ["Athlete: Example player", "Age group: 15U", "Registration: Complete"], action: "Ready for check-in" },
-            { title: "Record evaluations", detail: "Coaches record their assessments in one organized place.", preview: "Coach evaluation", fields: ["Position: Quarterback", "Coach notes: Recorded", "Review: Pending"], action: "Owner can review the assessment" },
-            { title: "Approve the offer", detail: "The owner reviews the evaluation and decides whether to approve an offer.", preview: "Offer approval", fields: ["Evaluation: Reviewed", "Decision: Owner approved", "Family notification: Prepared"], action: "People stay in control" },
-            { title: "Build the roster", detail: "An accepted offer moves the athlete into the team roster, with the family’s next steps clearly listed.", preview: "Team assignment", fields: ["Offer: Accepted", "Team: 15U", "Family next steps: Available"], action: "A clear start to the season" },
-        ],
-    },
-    {
-        label: "Business team",
-        title: "Move requests forward.",
-        benefit: "Give every task an owner and a status.",
-        steps: [
-            { title: "Collect the request", detail: "Employees submit the information needed through a standard request form.", preview: "New staff request", fields: ["Request: Equipment setup", "Department: Operations", "Details: Collected"], action: "Ready for review" },
-            { title: "Route for approval", detail: "The request reaches the designated approver, who makes the decision.", preview: "Approval queue", fields: ["Approver: Department manager", "Request details: Available", "Status: Awaiting approval"], action: "Clear responsibility" },
-            { title: "Assign the work", detail: "Approved requests become tasks for the appropriate team members.", preview: "Task assignment", fields: ["Approval: Complete", "Owner: IT team", "Checklist: Assigned"], action: "Everyone knows the next step" },
-            { title: "Track completion", detail: "A shared dashboard shows progress and what still needs attention.", preview: "Progress dashboard", fields: ["Setup: Complete", "Handoff: Pending", "Status: In progress"], action: "Less chasing for updates" },
-        ],
-    },
+  {
+    name: "Service business",
+    title: "From first inquiry to booked work.",
+    benefit: "Keep every lead moving, with fewer manual follow-ups.",
+    steps: [
+      {
+        name: "Capture",
+        title: "A new customer reaches out.",
+        fields: ["Request: Website redesign", "Source: Website inquiry form", "Contact preference: Email"],
+        result: "Collect the information your team needs in one consistent format.",
+      },
+      {
+        name: "Organize",
+        title: "Give the request a clear home.",
+        fields: ["Pipeline: New inquiry", "Assigned to: Project contact", "Next action: Review project needs"],
+        result: "Route the inquiry to the right person and keep its status visible.",
+      },
+      {
+        name: "Follow up",
+        title: "Make the next step easy.",
+        fields: ["Action: Prepare a consultation invitation", "Calendar: Show available times", "Reminder: Follow up if no reply"],
+        result: "Connect email and scheduling tools around an agreed follow-up process.",
+      },
+      {
+        name: "Move forward",
+        title: "Turn the conversation into a project.",
+        fields: ["Scope: Confirm deliverables", "Proposal: Ready for review", "Status: Awaiting customer approval"],
+        result: "Keep the scope, decisions, and next actions connected as work progresses.",
+      },
+    ],
+  },
+  {
+    name: "Sports organization",
+    title: "From registration to a ready roster.",
+    benefit: "Give coaches and families a clearer path through your season.",
+    steps: [
+      {
+        name: "Register",
+        title: "An athlete signs up.",
+        fields: ["Program: Youth tryouts", "Athlete information: Collected", "Parent contact: Included"],
+        result: "Replace scattered messages with a structured registration process.",
+      },
+      {
+        name: "Evaluate",
+        title: "Coaches work from one list.",
+        fields: ["Check-in: Complete", "Evaluation: Ready for coach notes", "Access: Authorized staff"],
+        result: "Keep check-in, evaluations, and athlete status together.",
+      },
+      {
+        name: "Offer",
+        title: "Make the next decision clear.",
+        fields: ["Decision: Offer prepared", "Team: Selected by staff", "Parent communication: Ready for review"],
+        result: "Support staff decisions with organized offers and clear family communication.",
+      },
+      {
+        name: "Manage",
+        title: "Bring the season into focus.",
+        fields: ["Roster: Assigned athletes", "Payments: Track balances", "Schedule: Share program information"],
+        result: "Connect roster information, payment tracking, and season updates.",
+      },
+    ],
+  },
+  {
+    name: "Business team",
+    title: "From incoming request to completed work.",
+    benefit: "Make responsibilities and progress easier to see.",
+    steps: [
+      {
+        name: "Receive",
+        title: "A request enters the system.",
+        fields: ["Request: New employee setup", "Department: Operations", "Needed by: Requested start date"],
+        result: "Give staff one place to submit requests with the right details.",
+      },
+      {
+        name: "Assign",
+        title: "The right people see the work.",
+        fields: ["Owner: Responsible team member", "Checklist: Required setup tasks", "Priority: Based on agreed rules"],
+        result: "Route work by responsibility instead of relying on forwarded messages.",
+      },
+      {
+        name: "Approve",
+        title: "Keep decisions in the process.",
+        fields: ["Approval: Manager review", "Access: Based on role", "Status: Waiting for a decision"],
+        result: "Keep approval steps visible and preserve human review where it matters.",
+      },
+      {
+        name: "Complete",
+        title: "Close the loop with confidence.",
+        fields: ["Checklist: Completed tasks", "Notification: Requester updated", "Reporting: Progress available"],
+        result: "Give your team a clear record of what happened and what still needs attention.",
+      },
+    ],
+  },
 ];
+
 export default function WorkflowDemo() {
-    const [selected, setSelected] = useState(0);
-    const [step, setStep] = useState(0);
-    const example = examples[selected];
-    const active = example.steps[step];
-    return (<section className="automation-section upgraded-workflow">
-      <div className="wrap split">
-        <div className="workflow-intro">
-          <p className="eyebrow">02 / LESS MANUAL WORK. MORE MOMENTUM.</p>
-          <h2>Your next move.<br /><span>Already connected.</span></h2>
-          <p className="section-copy">
-            See how we could connect the steps you handle every day.
-            Choose your organization, then explore the process.
-          </p>
-          <div className="workflow-tabs" role="group" aria-label="Choose your organization">
-            
+  const [organization, setOrganization] = useState(0);
+  const [step, setStep] = useState(0);
+  const current = examples[organization];
+  const preview = current.steps[step];
+
+  return (
+    <section className="automation-section connected-demo">
+      <div className="wrap">
+        <div className="connected-heading">
+          <div>
+            <p className="eyebrow">02 / SEE HOW IT COULD WORK</p>
+            <h2>Your everyday work.<br /><span>Connected, step by step.</span></h2>
           </div>
-          <div className="workflow-benefit">
-            <span aria-hidden="true">{iconText("\u2197")}</span>
-            <p></p>
-          </div>
-          <a className="workflow-contact-link" href="#contact">{iconText(" Let\u2019s simplify your process \u2197 ")}</a>
+          <p>Explore a practical example. Choose your organization, then follow the process from start to finish.</p>
         </div>
 
-        <div className="workflow-panel enhanced-panel">
-          <div className="panel-top">
-            <span><span className="status-dot"/>INTERACTIVE EXAMPLE</span>
-            <span>0</span>
+        <div className="connected-layout">
+          <div className="connected-overview">
+            <p className="connected-label">CHOOSE YOUR ORGANIZATION</p>
+            <div className="connected-types" aria-label="Organization examples">
+              {examples.map((example, index) => (
+                <button type="button" key={example.name}
+                  aria-pressed={organization === index}
+                  aria-controls="connected-preview"
+                  onClick={() => { setOrganization(index); setStep(0); }}>
+                  {example.name}
+                  <Arrow direction="right" />
+                </button>
+              ))}
+            </div>
+            <div className="connected-benefit">
+              <span>THE OPPORTUNITY</span>
+              <p>{current.benefit}</p>
+            </div>
+            <a className="connected-contact" href="#contact">
+              Talk about your process <Arrow />
+            </a>
           </div>
-          <h3></h3>
-          <p className="demo-note">Illustrative demo · Built around your actual tools and approvals.</p>
 
-          <div className="workflow-progress" aria-hidden="true">
-            <span style={{ width: `${(step + 1) * 25}%` }}/>
-          </div>
+          <div className="connected-panel">
+            <div className="connected-panel-top">
+              <span><i aria-hidden="true" />INTERACTIVE EXAMPLE</span>
+              <span>0{organization + 1} / 03</span>
+            </div>
+            <h3>{current.title}</h3>
 
-          <div className="workflow-step-picker" role="group" aria-label="Explore workflow steps">
-            
-          </div>
+            <div className="connected-steps" aria-label="Explore workflow steps">
+              {current.steps.map((item, index) => (
+                <button type="button" key={item.name}
+                  aria-pressed={step === index}
+                  aria-controls="connected-preview"
+                  onClick={() => setStep(index)}>
+                  <span>{index + 1}</span>
+                  {item.name}
+                </button>
+              ))}
+            </div>
 
-          <div className="workflow-preview" aria-live="polite">
-            <div className="preview-heading">
-              <span className="preview-icon" aria-hidden="true">{iconText("\u2197")}</span>
-              <div>
-                <p>STEP 0</p>
-                <h4></h4>
+            <div className="connected-preview" id="connected-preview"
+              aria-live="polite" aria-atomic="true">
+              <p className="connected-label">STEP {step + 1} / {preview.name.toUpperCase()}</p>
+              <h4>{preview.title}</h4>
+              <ul>
+                {preview.fields.map((field) => (
+                  <li key={field}><span aria-hidden="true" />{field}</li>
+                ))}
+              </ul>
+              <div className="connected-result">
+                <span>WHAT THIS ENABLES</span>
+                <p>{preview.result}</p>
               </div>
             </div>
-            <div className="preview-fields">
-              
-            </div>
-            <div className="preview-result">
-              <span className="status-dot"/>
-            </div>
-          </div>
 
-          <p className="workflow-explanation"></p>
-          <div className="panel-bottom">
-            <span>Step  of 4</span>
-            <button className="button secondary" onClick={() => setStep((step + 1) % 4)}>
-              {iconText(" \u2192 ")}</button>
+            <div className="connected-bottom">
+              <span>Step {step + 1} of {current.steps.length}</span>
+              <button type="button" onClick={() => setStep((step + 1) % current.steps.length)}>
+                {step === current.steps.length - 1 ? "Start again" : "Next step"}
+                <Arrow direction="right" />
+              </button>
+            </div>
+            <p className="connected-note">
+              Illustrative examples—not live submissions. Your implementation is scoped around your tools, access requirements, and approval process.
+            </p>
           </div>
         </div>
       </div>
-    </section>);
+    </section>
+  );
 }
