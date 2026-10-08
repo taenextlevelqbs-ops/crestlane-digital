@@ -205,6 +205,7 @@ export default function Home() {
           <div className="inquiry-panel">
             <div className="direct-contact">
               <a href="tel:+17034314468">{iconText("Call (703) 431-4468 \u2197")}</a>
+<a href="tel:+17039806483">(703) 980-6483</a>
               <a href="mailto:sales@crestlanedigital.com">{iconText("sales@crestlanedigital.com \u2197")}</a>
             </div>
             <InquiryForm />
