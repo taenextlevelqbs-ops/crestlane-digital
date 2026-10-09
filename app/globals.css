@@ -1498,3 +1498,103 @@ footer > span { width: 100%; font-size: 11px; }
 /* Keep the noninteractive hero strip from blocking the globe controls. */
 .hero-bottom { pointer-events: none; }
 .hero-bottom a { pointer-events: auto; }
+
+/* Give the service console room to breathe beside the hero copy. */
+@media (min-width: 1101px) {
+  .hero { min-height: 1000px; }
+  .hero-bottom { margin-top: 34px; }
+}
+
+/* Crestlane visual system: calmer typography, clearer hierarchy, useful motion. */
+:root {
+  --bg: #070a12;
+  --text: #f4f6fc;
+  --muted: #b2bdd3;
+  --line: #a9baff25;
+  --accent: #c2caff;
+  --cyan: #89e4ee;
+  --page-width: 1320px;
+  --section-space: clamp(76px, 9vw, 132px);
+}
+html { scroll-padding-top: 28px; }
+.wrap { width: min(var(--page-width), calc(100% - 64px)); }
+.header { height: 96px; }
+.crestlane-header-logo { width: 112px; height: 96px; }
+.navigation { gap: clamp(20px, 3vw, 38px); }
+.navigation a { transition: color .18s ease, border-color .18s ease, background .18s ease; }
+.hero { margin-top: -96px; padding-top: 96px; }
+.hero h1 { max-width: 800px; font-weight: 450; }
+.hero-description { max-width: 560px; }
+.eyebrow { letter-spacing: .14em; }
+.section { padding-block: var(--section-space); }
+.section-heading { margin-bottom: 48px; }
+.section-heading > p:last-child { max-width: 440px; }
+.studio-services, .connected-panel, .globe-service-console, .studio-project {
+  border-color: #a8bcf52b;
+  box-shadow: 0 20px 70px #0002;
+}
+.studio-service-detail { padding: clamp(28px, 4vw, 52px); }
+.studio-service-picker button, .connected-types button,
+.studio-project-filters button, .globe-destinations button,
+.connected-steps button, .connected-bottom button,
+.globe-explore-button, .menu-button {
+  transition: color .18s ease, border-color .18s ease, background .18s ease, transform .18s ease;
+}
+.studio-service-picker button:hover, .studio-project-filters button:hover,
+.connected-types button:hover, .connected-steps button:hover,
+.connected-bottom button:hover, .globe-explore-button:hover {
+  transform: translateY(-1px);
+}
+.studio-project { grid-template-columns: 1.05fr .95fr; }
+.studio-project-visual { min-height: 380px; }
+.studio-project-copy { padding: clamp(28px, 4vw, 52px); }
+.studio-project-copy h3 { font-size: clamp(27px, 3vw, 36px); }
+.studio-project-tags span { border-radius: 999px; }
+.case-study h1 { letter-spacing: -.06em; }
+.case-hero { min-height: 480px; }
+.case-brand-visual { background-color: #0b111e; }
+.contact-section { padding-block: clamp(76px, 9vw, 112px); }
+.inquiry-panel { padding: clamp(20px, 3vw, 34px); border: 1px solid #a5bfff25; background: #0c1220a8; }
+.contact-form { gap: 20px 18px; }
+.contact-form label { line-height: 1.6; }
+.menu-button { min-width: 44px; min-height: 44px; }
+@media (min-width: 1101px) {
+  .hero { min-height: 1040px; }
+  .space-scene.studio-globe { top: 102px; }
+  .hero-bottom { margin-top: 26px; }
+}
+@media (max-width: 1100px) {
+  .wrap { width: calc(100% - 52px); }
+  .header { height: 86px; }
+  .hero { margin-top: -86px; padding-top: 86px; }
+  .hero > .hero-content { padding-top: 58px; }
+  .space-scene.studio-globe { margin-bottom: 38px; }
+  .studio-project-visual { min-height: 320px; }
+}
+@media (max-width: 700px) {
+  :root { --section-space: 72px; }
+  .wrap { width: calc(100% - 40px); }
+  .header { height: 82px; }
+  .crestlane-header-logo { width: 82px; height: 74px; }
+  .hero { margin-top: -82px; padding-top: 82px; }
+  .hero > .hero-content { padding: 35px 0 28px; }
+  h1 { font-size: clamp(42px, 11vw, 62px); line-height: 1.04; }
+  .hero-description { max-width: 35ch; line-height: 1.65; }
+  .space-scene.studio-globe { width: min(100%, 430px); margin: 0 auto 30px; }
+  .studio-globe .globe-surface { width: min(78vw, 290px); margin: -12px auto -18px; }
+  .globe-service-console { padding: 22px; }
+  .globe-destination-preview { min-height: 0; }
+  .globe-controls { margin-top: 10px; }
+  .hero-bottom { padding-block: 18px; }
+  .section-heading { gap: 16px; }
+  .studio-project-visual { min-height: 240px; }
+  .inquiry-panel { padding: 20px; }
+  .navigation-shell { margin-left: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .navigation a, .studio-service-picker button, .connected-types button,
+  .studio-project-filters button, .globe-destinations button,
+  .connected-steps button, .connected-bottom button, .globe-explore-button,
+  .menu-button { transition: none; transform: none; }
+}
+@media (min-width: 1101px) { .hero-bottom { margin-top: 64px; } }

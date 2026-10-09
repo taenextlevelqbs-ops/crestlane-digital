@@ -15,12 +15,13 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://crestlanedigital.com"),
 
-  title: "Crestlane Digital",
+  title: { default: "Crestlane Digital | Websites, Software & Automation", template: "%s | Crestlane Digital" },
+  alternates: { canonical: "/" },
   description:
-    "Custom websites, business software, portals, workflow automation, and ongoing support for businesses and sports organizations.",
+    "Crestlane Digital builds professional websites, custom applications, administrative systems, and business automation for growing businesses and sports organizations.",
 
   openGraph: {
-    title: "Crestlane Digital",
+    title: "Crestlane Digital | Websites, Software & Automation",
     description: "Websites. Software. Smarter operations.",
     url: "https://crestlanedigital.com",
     siteName: "Crestlane Digital",
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Crestlane Digital",
+    title: "Crestlane Digital | Websites, Software & Automation",
     description: "Websites. Software. Smarter operations.",
     images: ["/CrestLaneDigitalLogo.jpeg"],
   },
@@ -52,7 +53,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org", "@type": "Organization",
+          name: "Crestlane Digital", url: "https://crestlanedigital.com",
+          logo: "https://crestlanedigital.com/CrestLaneDigitalLogo.jpeg",
+          email: "sales@crestlanedigital.com", telephone: "+1-703-431-4468",
+          description: "Websites, custom applications, administrative systems, and business automation.",
+        }).replace(/</g, "\\u003c") }} />
+      </body>
     </html>
   );
 }

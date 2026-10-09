@@ -72,6 +72,7 @@ const services = [
 const projects = [
     {
         name: "NOVA Sports Live",
+        projectSlug: "nova-sports-live",
         category: "SPORTS INFORMATION PLATFORM",
         copy: "Scores, teams, rankings, and coverage brought together for Northern Virginia sports.",
         image: "/novasportslive.png",
@@ -79,6 +80,7 @@ const projects = [
     },
     {
         name: "DMV Attack",
+        projectSlug: "dmv-attack",
         category: "WEBSITE + ORGANIZATION TOOLS",
         copy: "A football organization's digital home, with tryout registration and coach administration tools.",
         image: "/dmvattack.jpeg",
@@ -86,6 +88,7 @@ const projects = [
     },
     {
         name: "Coach Tae QB",
+        projectSlug: "coach-tae-qb",
         category: "ATHLETE DEVELOPMENT",
         copy: "A clear home for quarterback training, programs, and parent inquiries.",
         image: "/CoachTaeqb.png",

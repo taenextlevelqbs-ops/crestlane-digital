@@ -68,3 +68,12 @@ test('provider errors, malformed responses and timeouts never report success or 
     assert.equal(result.status,502);assert.equal(body.status,undefined);assert.ok(!JSON.stringify(body).includes('private'));
   }
 });
+test('production fails closed when the expected public origin is not configured',async()=>{
+  const result=await handler(undefined,{...env,NODE_ENV:'production',CONTACT_SITE_ORIGIN:undefined})(request());
+  assert.equal(result.status,503);assert.match((await result.json()).message,/has not been sent/);
+});
+test('rate-limit store outages fail closed before sending email',async()=>{
+  let sent=false;
+  const result=await createContactHandler({env,allow:async()=>"unavailable",send:async()=>{sent=true;return Response.json({id:'must-not-send'});}})(request());
+  assert.equal(result.status,503);assert.equal(sent,false);assert.match((await result.json()).message,/has not been sent/);
+});

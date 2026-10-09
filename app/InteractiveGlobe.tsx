@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 export default function InteractiveGlobe() {
   const canvas = useRef<HTMLCanvasElement>(null);
+  const requestRender = useRef<() => void>(() => {});
   const angle = useRef(0.35);
   const tilt = useRef(-0.22);
   const drag = useRef<{ id: number; x: number } | null>(null);
@@ -43,6 +44,7 @@ export default function InteractiveGlobe() {
     setSelected(index);
     angle.current += 0.45;
     window.dispatchEvent(new CustomEvent("crestlane-service", { detail: index }));
+    requestRender.current();
   }
 
   function exploreDestination() {
@@ -73,21 +75,31 @@ export default function InteractiveGlobe() {
       ratio = Math.min(window.devicePixelRatio || 1, 2);
       el.width = Math.round(size * ratio);
       el.height = Math.round(size * ratio);
+      schedule();
     };
     const observer = new ResizeObserver(resize);
     observer.observe(el);
     const intersection = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
+      if (visible) schedule();
+      else if (frame) { cancelAnimationFrame(frame); frame = 0; }
     });
     intersection.observe(el);
+    const schedule = () => {
+      if (!frame && visible && !document.hidden) frame = requestAnimationFrame(draw);
+    };
+    const onVisibility = () => { if (document.hidden) { if (frame) cancelAnimationFrame(frame); frame = 0; } else schedule(); };
+    const onMotion = () => schedule();
+    document.addEventListener("visibilitychange", onVisibility);
+    motion.addEventListener("change", onMotion);
     resize();
+    requestRender.current = schedule;
 
     function draw(time: number) {
-      frame = requestAnimationFrame(draw);
-      if (!context || !el) return;
+      frame = 0;
+      if (!context || !el || !visible || document.hidden) return;
       const delta = Math.min((time - previous) / 1000 || 0, 0.04);
       previous = time;
-      if (!visible || document.hidden) return;
       if (!paused.current && !motion.matches && !drag.current) {
         angle.current += delta * 0.13;
       }
@@ -200,11 +212,15 @@ export default function InteractiveGlobe() {
         Math.sin(orbitAngle) * radius * 0.48, size * 0.006, 0, Math.PI * 2);
       c.fill();
       c.restore();
+      if (!paused.current && !motion.matches && !drag.current) schedule();
     }
 
-    frame = requestAnimationFrame(draw);
+    schedule();
     return () => {
-      cancelAnimationFrame(frame);
+      if (frame) cancelAnimationFrame(frame);
+      requestRender.current = () => {};
+      document.removeEventListener("visibilitychange", onVisibility);
+      motion.removeEventListener("change", onMotion);
       observer.disconnect();
       intersection.disconnect();
     };
@@ -223,18 +239,21 @@ export default function InteractiveGlobe() {
           if (drag.current?.id === event.pointerId) {
             angle.current += (event.clientX - drag.current.x) * 0.012;
             drag.current.x = event.clientX;
+            requestRender.current();
           } else if (event.pointerType === "mouse") {
             const rect = event.currentTarget.getBoundingClientRect();
             tilt.current = -0.22 + ((event.clientY - rect.top) / rect.height - 0.5) * 0.3;
+            requestRender.current();
           }
         }}
-        onPointerUp={() => { drag.current = null; }}
-        onPointerCancel={() => { drag.current = null; }}
-        onLostPointerCapture={() => { drag.current = null; }}
+        onPointerUp={() => { drag.current = null; requestRender.current(); }}
+        onPointerCancel={() => { drag.current = null; requestRender.current(); }}
+        onLostPointerCapture={() => { drag.current = null; requestRender.current(); }}
         onKeyDown={(event) => {
           if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
             event.preventDefault();
             angle.current += event.key === "ArrowRight" ? 0.2 : -0.2;
+            requestRender.current();
           }
         }}>
         <canvas ref={canvas} aria-hidden="true" />
@@ -280,6 +299,7 @@ export default function InteractiveGlobe() {
           onClick={() => {
             paused.current = !paused.current;
             setPlaying(!paused.current);
+            requestRender.current();
           }}>
           {playing ? "Pause rotation" : "Resume rotation"}
         </button>

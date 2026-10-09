@@ -19,7 +19,7 @@ const reply = (body: object, status: number, headers: Record<string, string> = {
 export function createContactHandler(options: {
   env: NodeJS.ProcessEnv;
   send?: typeof fetch;
-  allow: () => boolean;
+  allow: (request: Request) => boolean | "unavailable" | Promise<boolean | "unavailable">;
 }) {
   return async (request: Request) => {
     const origin = request.headers.get("origin");
@@ -36,7 +36,9 @@ export function createContactHandler(options: {
     if (request.headers.get("content-type")?.split(";")[0].trim() !== "application/json") {
       return reply({ message: "Send the project form as JSON." }, 415);
     }
-    if (!options.allow()) return reply({ message: "Too many requests. Please wait a minute or contact us directly." }, 429, { "Retry-After": "60" });
+    const rateLimited = await options.allow(request);
+    if (rateLimited === "unavailable") return reply({ message: "Online inquiries are temporarily unavailable. Please contact us directly. Your inquiry has not been sent." }, 503);
+    if (!rateLimited) return reply({ message: "Too many requests. Please wait a minute or contact us directly." }, 429, { "Retry-After": "60" });
     if (Number(request.headers.get("content-length")) > MAX_BYTES) return reply({ message: "Your inquiry is too long." }, 413);
     let input: unknown;
     try {

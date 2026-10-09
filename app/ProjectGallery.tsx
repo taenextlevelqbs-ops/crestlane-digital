@@ -3,8 +3,10 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Arrow } from "./StudioIcons";
+import Link from "next/link";
 
 type Project = {
+  projectSlug?: string;
   name: string;
   category: string;
   copy: string;
@@ -65,6 +67,9 @@ export default function ProjectGallery({ projects }: { projects: Project[] }) {
               <div className="studio-project-copy">
                 <h3>{project.name}</h3>
                 <p>{project.copy}</p>
+                {project.projectSlug && <Link className="studio-project-visit" href={`/work/${project.projectSlug}`}>
+                  Read case study <Arrow direction="right" />
+                </Link>}
                 {details && (
                   <>
                     <div className="studio-project-tags">

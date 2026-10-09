@@ -78,3 +78,33 @@ test("existing filters, service selection and workflow interactions still work",
   await page.locator(".connected-types button").nth(1).click(); await page.getByRole("button", { name: "Next step", exact: true }).click();
   await expect(page.locator(".connected-preview h4")).toHaveText("Coaches work from one list.");
 });
+
+
+test("case studies, canonical metadata, sitemap and robots are available", async ({ page }) => {
+  await page.goto("/");
+  await expect(page).toHaveTitle(/Crestlane Digital \| Websites, Software & Automation/);
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://crestlanedigital.com");
+  const sitemap = await page.request.get("/sitemap.xml"); expect(sitemap.ok()).toBe(true);
+  const sitemapXml = await sitemap.text();
+  for (const slug of ["nova-sports-live", "dmv-attack", "coach-tae-qb"]) expect(sitemapXml).toContain(`/work/${slug}`);
+  const robots = await page.request.get("/robots.txt"); expect(robots.ok()).toBe(true);
+  expect(await robots.text()).toContain("Disallow: /api/");
+  for (const [slug, name] of [["nova-sports-live", "NOVA Sports Live"], ["dmv-attack", "DMV Attack"], ["coach-tae-qb", "Coach Tae QB"]]) {
+    await page.goto(`/work/${slug}`); await expect(page.locator("h1")).toHaveText(name);
+    await expect(page.getByText("THE CHALLENGE")).toBeVisible(); await expect(page.getByText("THE APPROACH")).toBeVisible();
+    await expect(page.getByText("WHAT IT DOES")).toBeVisible(); await expect(page.getByRole("link", { name: /Visit the live project/ })).toHaveAttribute("href", /^https:\/\//);
+  }
+});
+
+test("reduced motion draws a still globe without starting continuous animation", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.addInitScript(() => {
+    let count = 0;
+    const native = window.requestAnimationFrame.bind(window);
+    window.requestAnimationFrame = (callback) => { count++; return native(callback); };
+    Object.defineProperty(window, "__frameCount", { get: () => count });
+  });
+  await page.goto("/"); await page.waitForTimeout(700);
+  expect(await page.evaluate(() => (window as unknown as Window & { __frameCount: number }).__frameCount)).toBeLessThan(5);
+  await expect(page.locator("canvas")).toBeVisible();
+});

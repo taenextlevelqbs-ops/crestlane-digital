@@ -57,7 +57,7 @@ silently simulated by this endpoint.
 ## Validation
 
 - `npm run test:contact`: server validation and mocked provider outcomes.
-- `npm run test:browser`: Chromium navigation, responsive layout and form UI tests.
+- `npm run test:browser`: Chromium navigation, responsive layout, forms, SEO, case studies and globe-motion tests.
   Install the Playwright Chromium browser with `npx playwright install chromium`,
   or set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to an installed Chromium executable.
   Browser tests mock valid submissions so they never send live email.
@@ -80,3 +80,32 @@ Production deployment, delivery confirmation and Phase 2 remain pending review.
 - A pre-existing hero strip intercepted globe button clicks; pointer handling was
   corrected without changing the globe or removing the strip's navigation link.
 - All other repositories remained unchanged. No live email, merge, push or deployment occurred.
+
+## Production Vercel variables
+
+Add these names to the Crestlane Vercel project for **Production** (and separately
+for Preview/Development if those environments should send mail):
+
+- `RESEND_API_KEY` — Resend API secret; keep server-only.
+- `CONTACT_FROM_EMAIL` — sender address on the domain verified in Resend.
+- `CONTACT_TO_EMAIL` — destination business inbox (`sales@crestlanedigital.com` is the existing site contact).
+- `CONTACT_SITE_ORIGIN` — exact origin, `https://crestlanedigital.com`.
+- `UPSTASH_REDIS_REST_URL` — Upstash Redis REST endpoint for persistent rate limits.
+- `UPSTASH_REDIS_REST_TOKEN` — Upstash Redis token; keep server-only.
+
+The application requires Resend and Upstash settings in production. Missing provider
+settings fail closed with HTTP 503. Missing Redis settings or an unavailable limiter
+also fails closed with HTTP 503. Local development uses a small in-memory limiter.
+Create an Upstash Redis database, add its REST URL and token as encrypted Vercel environment variables, then redeploy before accepting live leads.
+A successful Resend API response means accepted for sending, not delivered. Check
+Resend delivery events and the inbox before confirming end-to-end delivery.
+
+## Case study source notes
+
+The case pages use the project descriptions and identity images already in the Crestlane
+repository and make no claims about revenue, growth, performance or client quotations.
+The deployed project domains returned an environment proxy HTTP 403 during this task,
+so authentic full-page screenshots and live implementation technology could not be
+verified. Current case pages identify that limitation rather than inventing a stack.
+For a true portfolio case study, add owner-approved captures and confirm each project's
+frameworks, integrations, authentication and implementation details.
