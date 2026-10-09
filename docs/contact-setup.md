@@ -1,6 +1,6 @@
-# Phase 1 contact configuration
+# Contact form production configuration
 
-Branch: `feat/crestlane-phase-1-contact`. No production deployment is authorized.
+Branch: `feat/crestlane-production-improvements`.
 
 The `/api/contact` endpoint uses Resend's HTTPS API, with no browser credentials.
 It returns HTTP 503 when configuration is missing. A successful provider response
@@ -28,7 +28,7 @@ and rejection are covered by mocked tests; no live message has been sent.
 7. Restart the development service after applying settings. For local testing,
    use the existing ignored `.env.local`, preserving any user settings; never commit
    credentials. Production settings belong in the hosting platform's secret manager.
-8. After approval for a live test, submit a single test inquiry and verify both
+8. After production variables and DNS are configured, submit a single test inquiry and verify both
    Resend's event history and receipt in the configured inbox. Confirm Reply-To works.
    A send API response alone does not prove delivery.
 
@@ -42,11 +42,10 @@ silently simulated by this endpoint.
   are validated on the server. Client validation provides accessible field errors.
 - Only same-origin JSON submissions are accepted. No cross-origin CORS allowance.
 - Request bodies are capped at 16 KiB while streaming, even without Content-Length.
-- A honeypot and a 20-request/minute per-process global limiter reduce basic abuse.
-  The limiter intentionally does not trust arbitrary IP headers. It is **not** a
-  distributed limit and resets across serverless instances/restarts. Before public
-  launch, configure managed host/WAF rate limiting on POST `/api/contact`; consider
-  a verified challenge if abuse warrants it. Origin checks alone do not stop bots.
+- A honeypot and a 10-request/minute per-IP Upstash sliding-window limiter reduce
+  basic abuse in production. The API uses Vercel's request IP helper and fails
+  closed if Redis is missing, has no client IP, or is unavailable. Local
+  development uses an in-memory limit. Origin checks alone do not stop bots.
 - Sender and recipient come from server configuration; email content is plain text.
 - Provider calls time out after 10 seconds. The client waits 15 seconds. Ambiguous
   timeouts direct visitors to contact Crestlane before retrying, because an email
@@ -65,22 +64,6 @@ silently simulated by this endpoint.
 - `npm run lint`
 - `npm run build` (requires Google Fonts network access).
 
-Production deployment, delivery confirmation and Phase 2 remain pending review.
-
-## Phase 1 review results
-
-- 8 server tests passed; provider acceptance, rejection and timeout responses are mocked.
-- 9 Chromium browser tests passed, including 320/390/768/1440 px layouts,
-  keyboard navigation, form errors, loading, acceptance wording, error recovery,
-  and regression checks for filters, the globe and workflow demo.
-- TypeScript and production build passed. Google Fonts access is now working.
-- Lint passed with two pre-existing image warnings in `app/page.backup.tsx`.
-- Live unconfigured endpoint returned HTTP 503 and explicitly said the inquiry was not sent.
-- Interface and contact screenshots were inspected at mobile, tablet and desktop sizes.
-- A pre-existing hero strip intercepted globe button clicks; pointer handling was
-  corrected without changing the globe or removing the strip's navigation link.
-- All other repositories remained unchanged. No live email, merge, push or deployment occurred.
-
 ## Production Vercel variables
 
 Add these names to the Crestlane Vercel project for **Production** (and separately
@@ -96,9 +79,16 @@ for Preview/Development if those environments should send mail):
 The application requires Resend and Upstash settings in production. Missing provider
 settings fail closed with HTTP 503. Missing Redis settings or an unavailable limiter
 also fails closed with HTTP 503. Local development uses a small in-memory limiter.
-Create an Upstash Redis database, add its REST URL and token as encrypted Vercel environment variables, then redeploy before accepting live leads.
-A successful Resend API response means accepted for sending, not delivered. Check
-Resend delivery events and the inbox before confirming end-to-end delivery.
+Create an Upstash Redis database, add its REST URL and token as encrypted Vercel environment variables, then redeploy before accepting live leads. A successful Resend API response means accepted for sending, not delivered. Check Resend delivery events and the inbox before confirming end-to-end delivery.
+
+## Current validation
+
+- `npm run test:contact`: 10 passed; provider responses are mocked.
+- `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium npm run test:browser`: 11 passed, including 320/390/768/1440 px layouts.
+- `npx --no-install tsc --noEmit --incremental false`: passed.
+- `npm run lint`: passed with two `<img>` warnings in the pre-existing `app/page.backup.tsx`.
+- `npm run build`: passed.
+- No live email or inbox delivery has been verified; production credentials and DNS verification are not configured in this environment.
 
 ## Case study source notes
 
