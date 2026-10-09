@@ -73,17 +73,17 @@ for Preview/Development if those environments should send mail):
 - `CONTACT_FROM_EMAIL` — sender address on the domain verified in Resend.
 - `CONTACT_TO_EMAIL` — destination business inbox (`sales@crestlanedigital.com` is the existing site contact).
 - `CONTACT_SITE_ORIGIN` — exact origin, `https://crestlanedigital.com`.
-- `UPSTASH_REDIS_REST_URL` — Upstash Redis REST endpoint for persistent rate limits.
-- `UPSTASH_REDIS_REST_TOKEN` — Upstash Redis token; keep server-only.
+- `KV_REST_API_URL` and `KV_REST_API_TOKEN` — Vercel's Upstash integration creates these for Production/Preview. They are preferred and remain server-only.
+- `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` — supported as a complete-pair fallback for existing deployments; never mix a URL from one pair with a token from the other.
 
 The application requires Resend and Upstash settings in production. Missing provider
 settings fail closed with HTTP 503. Missing Redis settings or an unavailable limiter
 also fails closed with HTTP 503. Local development uses a small in-memory limiter.
-Create an Upstash Redis database, add its REST URL and token as encrypted Vercel environment variables, then redeploy before accepting live leads. A successful Resend API response means accepted for sending, not delivered. Check Resend delivery events and the inbox before confirming end-to-end delivery.
+Vercel's Upstash integration provisions the KV variables for Production and Preview. Confirm both variables are present in the environments that will accept live leads, then redeploy. Existing deployments can use the complete legacy Upstash pair as a fallback. A successful Resend API response means accepted for sending, not delivered. Check Resend delivery events and the inbox before confirming end-to-end delivery.
 
 ## Current validation
 
-- `npm run test:contact`: 10 passed; provider responses are mocked.
+- `npm run test:contact`: server validation, provider mocks, and Redis credential selection.
 - `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium npm run test:browser`: 13 passed, including case-study navigation and 320/390/768/1440 px layouts.
 - `npx --no-install tsc --noEmit --incremental false`: passed.
 - `npm run lint`: passed.

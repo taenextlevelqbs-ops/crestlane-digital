@@ -11,6 +11,7 @@ loadModule.extensions['.ts'] = (module, filename) => {
 };
 const { createContactHandler, createLimiter } = loadModule('../lib/contact-server.ts');
 const { validateInquiry } = loadModule('../lib/contact-fields.ts');
+const { getRedisCredentials } = loadModule('../lib/redis-config.ts');
 const data = { name: 'Test Person', email: 'test@example.com', details: 'A new website', interests: ['Websites'] };
 const env = { RESEND_API_KEY: 'test-only-placeholder', CONTACT_FROM_EMAIL: 'Crestlane <hello@example.com>', CONTACT_TO_EMAIL: 'sales@example.com', CONTACT_SITE_ORIGIN: 'https://crestlanedigital.com' };
 const request = (body = data, headers = {}) => new Request('https://crestlanedigital.com/api/contact', { method: 'POST', headers: { origin: 'https://crestlanedigital.com', 'content-type': 'application/json', ...headers }, body: typeof body === 'string' ? body : JSON.stringify(body) });
@@ -76,4 +77,22 @@ test('rate-limit store outages fail closed before sending email',async()=>{
   let sent=false;
   const result=await createContactHandler({env,allow:async()=>"unavailable",send:async()=>{sent=true;return Response.json({id:'must-not-send'});}})(request());
   assert.equal(result.status,503);assert.equal(sent,false);assert.match((await result.json()).message,/has not been sent/);
+});
+test('Vercel KV credentials are preferred when the complete pair is configured',()=>{
+  assert.deepEqual(getRedisCredentials({
+    KV_REST_API_URL:'https://vercel-kv.example',KV_REST_API_TOKEN:' kv-secret ',
+    UPSTASH_REDIS_REST_URL:'https://legacy-upstash.example',UPSTASH_REDIS_REST_TOKEN:'legacy-secret',
+  }),{url:'https://vercel-kv.example',token:'kv-secret'});
+});
+test('legacy Upstash credentials remain a fallback when the Vercel KV pair is incomplete',()=>{
+  assert.deepEqual(getRedisCredentials({
+    KV_REST_API_URL:'https://vercel-kv.example',
+    UPSTASH_REDIS_REST_URL:'https://legacy-upstash.example',UPSTASH_REDIS_REST_TOKEN:'legacy-secret',
+  }),{url:'https://legacy-upstash.example',token:'legacy-secret'});
+});
+test('Redis configuration never combines URL and token from different credential pairs',()=>{
+  assert.equal(getRedisCredentials({
+    KV_REST_API_URL:'https://vercel-kv.example',
+    UPSTASH_REDIS_REST_TOKEN:'legacy-secret',
+  }),null);
 });
