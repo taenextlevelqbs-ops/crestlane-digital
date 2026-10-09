@@ -195,11 +195,6 @@ export default function InquiryForm() {
       </fieldset>
       <div className="full">
         <p ref={feedback} tabIndex={-1} className={`form-feedback ${state}`} role="status" aria-live="polite" aria-atomic="true">{message}</p>
-        <div className="direct-contact">
-          <a href="mailto:sales@crestlanedigital.com">{iconText("Email us directly \u2197")}</a>
-          <a href="tel:+17034314468">{iconText("(703) 431-4468 \u2197")}</a>
-<a href="tel:+17039806483">(703) 980-6483</a>
-        </div>
       </div>
     </form>);
 }

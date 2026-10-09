@@ -114,71 +114,73 @@ export default function Home() {
       <a className="skip-link" href="#services">Skip to services</a>
 
       <header className="header wrap">
-        
         <a className="brand crestlane-logo-link" href="#home" aria-label="Crestlane Digital home">
-          <Image src="/CrestLaneDigitalLogo.jpeg" alt="Crestlane Digital" width={160} height={160} priority className="crestlane-header-logo"/>
+          <Image src="/CrestLaneDigitalLogo.jpeg" alt="" width={160} height={160} priority className="crestlane-header-logo"/>
+          <span className="brand-wordmark"><strong>Crestlane</strong><small>Digital studio</small></span>
         </a>
         <Navigation />
       </header>
 
-      <section className="hero">
-        <div className="stars" aria-hidden="true"/>
-        <InteractiveGlobe />
-
-        <div className="hero-content wrap">
-          <p className="eyebrow"><span className="status-dot"/>YOUR NEXT CHAPTER, BUILT.</p>
-          <h1>A better website.<br />A smarter business.<br /><span>A new orbit.</span></h1>
-          <p className="hero-description">
-            Websites, custom software, automation, and website security that help your
-            business look exceptional and run more smoothly.
-          </p>
-          <div className="buttons">
-            <a className="button primary" href="#contact">{iconText("Let\u2019s build something \u2197")}</a>
-            <a className="button secondary" href="#work">{iconText("Explore our work \u2193")}</a>
+      <section className="hero" aria-labelledby="hero-title">
+        <div className="hero-grid wrap">
+          <div className="hero-content">
+            <p className="eyebrow"><span className="status-dot"/>WEB DESIGN · SOFTWARE · SMARTER OPERATIONS</p>
+            <h1 id="hero-title">Make room for<br /><em>what’s next.</em></h1>
+            <p className="hero-description">
+              We build the websites, custom software, and connected workflows that help your business move forward.
+            </p>
+            <div className="buttons">
+              <a className="button primary" href="#contact">{iconText("Start a project \u2197")}</a>
+              <a className="button text-link" href="#work">{iconText("See selected work \u2193")}</a>
+            </div>
+            <div className="hero-note">
+              <span className="hero-note-index">01—03</span>
+              <span>Strategy, design, and engineering.<br />One clear path from idea to launch.</span>
+            </div>
           </div>
-          <p className="hero-note">For businesses, sports organizations, and ambitious ideas.</p>
-        </div>
 
+          <div className="hero-visual">
+            <span className="hero-visual-label">A BETTER WAY TO WORK, IN EVERY DIRECTION</span>
+            <InteractiveGlobe />
+          </div>
+        </div>
         <div className="hero-bottom wrap">
-          <span>DESIGN WITH IMPACT. TECHNOLOGY WITH PURPOSE.</span>
-          <a href="#services">{iconText("Discover what\u2019s possible \u2193")}</a>
+          <span>DESIGNED AROUND PEOPLE. BUILT FOR THE WORK AHEAD.</span>
+          <a href="#services">{iconText("Explore our capabilities \u2193")}</a>
         </div>
       </section>
 
-      <section className="section wrap" id="services" tabIndex={-1}>
+      <section className="section services-section wrap" id="services" tabIndex={-1} aria-labelledby="services-title">
         <div className="section-heading">
           <p className="eyebrow">01 / WHAT WE BUILD</p>
-          <h2>Big possibilities.<br /><span>Simple experiences.</span></h2>
-          <p>You bring the idea—or the problem. We turn it into technology people can actually use.</p>
+          <h2 id="services-title">Technology should make the work <em>easier.</em></h2>
+          <p>Start with the problem. We’ll shape the right digital experience around the way your people already work.</p>
         </div>
         <ServiceExplorer services={services}/>
       </section>
 
       <WorkflowDemo />
 
-      <section className="section wrap" id="work" tabIndex={-1}>
+      <section className="section work-section wrap" id="work" tabIndex={-1} aria-labelledby="work-title">
         <div className="section-heading">
           <p className="eyebrow">03 / SELECTED WORK</p>
-          <h2>Ideas, brought<br /><span>into the real world.</span></h2>
-          <p>Websites and platforms built around the people who use them.</p>
+          <h2 id="work-title">Real work.<br /><em>Thoughtful technology.</em></h2>
+          <p>A closer look at digital homes and tools built for real teams, athletes, families, and customers.</p>
         </div>
         <ProjectGallery projects={projects}/>
       </section>
 
-      <section className="section wrap about split" id="about" tabIndex={-1}>
+      <section className="section wrap about split" id="about" tabIndex={-1} aria-labelledby="about-title">
         <div>
-          <p className="eyebrow">04 / THE PEOPLE BEHIND THE TECHNOLOGY</p>
-          <h2>Built with care.<br /><span>Made to make sense.</span></h2>
+          <p className="eyebrow">04 / HOW WE WORK</p>
+          <h2 id="about-title">Good technology should feel like <em>momentum.</em></h2>
         </div>
-          <div className="about-copy">
+        <div className="about-copy">
           <p>
-            Crestlane Digital brings design, development, and practical IT
-            experience together to help businesses and organizations move forward.
+            Crestlane brings product thinking, thoughtful design, and practical engineering to the everyday challenges businesses face.
           </p>
           <p>
-            We start by understanding how you work. Then we build the right
-            website, software, or workflow—with clear communication from the
-            first conversation through launch.
+            You get a small, senior team that takes the time to understand your operation, explains the trade-offs, and builds only what helps.
           </p>
           <div className="studio-process" aria-label="How a Crestlane project moves forward">
             <p className="studio-small-label">A CLEAR PATH FROM IDEA TO LAUNCH</p>
@@ -194,11 +196,10 @@ export default function Home() {
       <section className="contact-section" id="contact" tabIndex={-1}>
         <div className="wrap split">
           <div>
-            <p className="eyebrow">05 / LET’S MAKE IT HAPPEN</p>
-            <h2>What’s your<br /><span>next big thing?</span></h2>
+            <p className="eyebrow">05 / START A CONVERSATION</p>
+            <h2>What needs to work <em>better?</em></h2>
             <p className="section-copy">
-              Tell us what you want to build, improve, or protect.
-              Share what you know—we’ll help you figure out the next steps.
+              Tell us what you’re trying to change. We’ll help turn the first conversation into a practical next step.
             </p>
           </div>
           <div className="inquiry-panel">
@@ -213,11 +214,11 @@ export default function Home() {
       </section>
 
       <footer className="wrap">
-        
         <a className="footer-brand crestlane-footer-link" href="#home" aria-label="Crestlane Digital home">
-          <Image src="/CrestLaneDigitalLogo2.jpeg" alt="Crestlane Digital" width={190} height={190} className="crestlane-footer-logo"/>
+          <Image src="/CrestLaneDigitalLogo2.jpeg" alt="" width={190} height={190} className="crestlane-footer-logo"/>
+          <span className="brand-wordmark"><strong>Crestlane</strong><small>Digital studio</small></span>
         </a>
-        <p>Websites. Software. Smarter operations.</p>
+        <p>Websites · Software · Smarter operations</p>
         <nav className="footer-navigation" aria-label="Footer navigation">
           <a href="#services">Services</a>
           <a href="#work">Selected work</a>
