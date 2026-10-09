@@ -1468,3 +1468,33 @@ footer > span { width: 100%; font-size: 11px; }
   .connected-preview { padding: 20px; }
   .connected-preview h4 { font-size: 20px; }
 }
+
+/* Phase 1: navigation and inquiry states */
+.navigation-shell { margin-left: auto; }
+.menu-button svg { width: 22px; height: 22px; }
+.inquiry-fields {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  border: 0; padding: 0; margin: 0; min-width: 0;
+}
+.inquiry-fields:disabled { opacity: .75; }
+.contact-form .interest-options input { min-height: 18px; }
+.contact-trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.field-error { color: #ffb8b8; font-size: 13px; line-height: 1.6; }
+.contact-form [aria-invalid="true"] { border-color: #ffb8b8; }
+.form-feedback { margin: 0; font-size: 14px; line-height: 1.7; overflow-wrap: anywhere; }
+.form-feedback:empty { display: none; }
+.form-feedback.error { color: #ffb8b8; }
+.form-feedback.accepted { color: var(--cyan); }
+.sending-indicator {
+  width: 16px; height: 16px; margin-right: 10px; border: 2px solid currentColor;
+  border-right-color: transparent; border-radius: 50%; animation: inquiry-spin .8s linear infinite;
+}
+@keyframes inquiry-spin { to { transform: rotate(360deg); } }
+@media (max-width: 700px) {
+  .menu-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-width: 44px; min-height: 44px; }
+  .inquiry-fields { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { .sending-indicator { animation: none; } }
+/* Keep the noninteractive hero strip from blocking the globe controls. */
+.hero-bottom { pointer-events: none; }
+.hero-bottom a { pointer-events: auto; }

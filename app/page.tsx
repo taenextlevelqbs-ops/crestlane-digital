@@ -1,6 +1,6 @@
 "use client";
 import { iconText } from "./StudioIcons";
-import { useState } from "react";
+import Navigation from "./Navigation";
 import Image from "next/image";
 import InteractiveGlobe from "./InteractiveGlobe";
 import ServiceExplorer from "./ServiceExplorer";
@@ -107,7 +107,6 @@ const projects = [
     },
 ];
 export default function Home() {
-    const [menuOpen, setMenuOpen] = useState(false);
     return (<main id="home">
       <a className="skip-link" href="#services">Skip to services</a>
 
@@ -116,15 +115,7 @@ export default function Home() {
         <a className="brand crestlane-logo-link" href="#home" aria-label="Crestlane Digital home">
           <Image src="/CrestLaneDigitalLogo.jpeg" alt="Crestlane Digital" width={160} height={160} priority className="crestlane-header-logo"/>
         </a>
-        <button className="menu-button" aria-expanded={menuOpen} aria-controls="main-navigation" onClick={() => setMenuOpen(!menuOpen)}>
-          
-        </button>
-        <nav id="main-navigation" aria-label="Main navigation" className={menuOpen ? "navigation open" : "navigation"} onClick={() => setMenuOpen(false)}>
-          <a href="#services">Services</a>
-          <a href="#work">Our work</a>
-          <a href="#about">About</a>
-          <a className="nav-contact" href="#contact">{iconText("Start a project \u2197")}</a>
-        </nav>
+        <Navigation />
       </header>
 
       <section className="hero">
@@ -151,7 +142,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section wrap" id="services">
+      <section className="section wrap" id="services" tabIndex={-1}>
         <div className="section-heading">
           <p className="eyebrow">01 / WHAT WE BUILD</p>
           <h2>Big possibilities.<br /><span>Simple experiences.</span></h2>
@@ -162,7 +153,7 @@ export default function Home() {
 
       <WorkflowDemo />
 
-      <section className="section wrap" id="work">
+      <section className="section wrap" id="work" tabIndex={-1}>
         <div className="section-heading">
           <p className="eyebrow">03 / SELECTED WORK</p>
           <h2>Ideas, brought<br /><span>into the real world.</span></h2>
@@ -171,7 +162,7 @@ export default function Home() {
         <ProjectGallery projects={projects}/>
       </section>
 
-      <section className="section wrap about split" id="about">
+      <section className="section wrap about split" id="about" tabIndex={-1}>
         <div>
           <p className="eyebrow">04 / THE PEOPLE BEHIND THE TECHNOLOGY</p>
           <h2>Built with care.<br /><span>Made to make sense.</span></h2>
@@ -192,7 +183,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="contact-section" id="contact">
+      <section className="contact-section" id="contact" tabIndex={-1}>
         <div className="wrap split">
           <div>
             <p className="eyebrow">05 / LET’S MAKE IT HAPPEN</p>
