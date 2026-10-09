@@ -82,7 +82,7 @@ export function createContactHandler(options: {
       if (!response.ok || typeof result.id !== "string" || !result.id.trim()) {
         return reply({ message: "The email service did not confirm acceptance. Please contact us directly. Your details are still in the form." }, 502);
       }
-      return reply({ status: "accepted", reference, message: "The email service accepted your inquiry for sending. Inbox delivery has not yet been confirmed. You can contact us directly if you need an immediate response." }, 202);
+      return reply({ status: "accepted", reference, message: "Thank you! Your project inquiry has been submitted successfully. Our team will review your request and get back to you as soon as possible." }, 202);
     } catch {
       // A timeout can happen after provider acceptance: never claim either delivery or definitive failure.
       return reply({ message: "We could not confirm whether the email service accepted your inquiry. Please contact us directly before resubmitting. Your details are still in the form." }, 502);
