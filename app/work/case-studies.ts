@@ -11,7 +11,7 @@ export const caseStudies = [
     approach: "The platform organizes the scores, teams, rankings and coverage local sports audiences seek in a dedicated destination.",
     features: ["Sports scores and schedules", "Team and season information", "Regional rankings and coverage"],
     technology: "Responsive sports information website presenting schedules, scores, team information, rankings and coverage.",
-    outcome: "A dedicated public place to explore scores, teams, rankings and regional coverage.",
+    outcome: "A focused destination for exploring local scores, teams, rankings and sports coverage.",
   },
   {
     slug: "dmv-attack",
@@ -25,7 +25,7 @@ export const caseStudies = [
     approach: "The website brings public program information together with registration and coach administration tools.",
     features: ["Program and team information", "Tryout registration", "Coach administration tools"],
     technology: "Responsive organizational website with tryout registration and coach administration workflows.",
-    outcome: "Families can find program information and tryout registration; coaches have organization tools.",
+    outcome: "A public-facing home for program information and tryout registration, paired with coach administration tools.",
   },
   {
     slug: "coach-tae-qb",
@@ -39,6 +39,6 @@ export const caseStudies = [
     approach: "The branded website presents training programs and provides a direct inquiry path.",
     features: ["Quarterback training information", "Program presentation", "Parent and athlete inquiries"],
     technology: "Responsive public website with program information and parent inquiry paths.",
-    outcome: "A focused introduction to the quarterback training program and a direct contact path.",
+    outcome: "A clear introduction to quarterback training programs with a direct inquiry path for families.",
   },
 ];

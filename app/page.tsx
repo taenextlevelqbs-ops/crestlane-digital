@@ -170,7 +170,7 @@ export default function Home() {
           <p className="eyebrow">04 / THE PEOPLE BEHIND THE TECHNOLOGY</p>
           <h2>Built with care.<br /><span>Made to make sense.</span></h2>
         </div>
-        <div className="about-copy">
+          <div className="about-copy">
           <p>
             Crestlane Digital brings design, development, and practical IT
             experience together to help businesses and organizations move forward.
@@ -180,8 +180,13 @@ export default function Home() {
             website, software, or workflow—with clear communication from the
             first conversation through launch.
           </p>
-          <div className="process">
-            
+          <div className="studio-process" aria-label="How a Crestlane project moves forward">
+            <p className="studio-small-label">A CLEAR PATH FROM IDEA TO LAUNCH</p>
+            <ol>
+              <li><span>01</span><div><h3>Understand the work</h3><p>We learn how your business runs, where people get stuck, and what a useful result looks like.</p></div></li>
+              <li><span>02</span><div><h3>Design the right system</h3><p>We agree on a practical scope, then shape the experience and technology around it.</p></div></li>
+              <li><span>03</span><div><h3>Build, launch, improve</h3><p>You stay part of the decisions, receive a clear handoff, and know what support comes next.</p></div></li>
+            </ol>
           </div>
         </div>
       </section>
@@ -213,8 +218,14 @@ export default function Home() {
           <Image src="/CrestLaneDigitalLogo2.jpeg" alt="Crestlane Digital" width={190} height={190} className="crestlane-footer-logo"/>
         </a>
         <p>Websites. Software. Smarter operations.</p>
+        <nav className="footer-navigation" aria-label="Footer navigation">
+          <a href="#services">Services</a>
+          <a href="#work">Selected work</a>
+          <a href="#about">About Crestlane</a>
+          <a href="#contact">Start a project</a>
+        </nav>
         <a href="#home">{iconText("Back to top \u2191")}</a>
-        <span>©  Crestlane Digital</span>
+        <span>© {new Date().getFullYear()} Crestlane Digital</span>
       </footer>
     </main>);
 }

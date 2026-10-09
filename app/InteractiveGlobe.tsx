@@ -10,6 +10,7 @@ export default function InteractiveGlobe() {
   const drag = useRef<{ id: number; x: number } | null>(null);
   const paused = useRef(false);
   const [playing, setPlaying] = useState(true);
+  const [reducedMotion, setReducedMotion] = useState(false);
   const [selected, setSelected] = useState(0);
 
   const destinations = [
@@ -89,7 +90,13 @@ export default function InteractiveGlobe() {
       if (!frame && visible && !document.hidden) frame = requestAnimationFrame(draw);
     };
     const onVisibility = () => { if (document.hidden) { if (frame) cancelAnimationFrame(frame); frame = 0; } else schedule(); };
-    const onMotion = () => schedule();
+    const onMotion = () => {
+      paused.current = motion.matches;
+      setPlaying(!motion.matches);
+      setReducedMotion(motion.matches);
+      schedule();
+    };
+    onMotion();
     document.addEventListener("visibilitychange", onVisibility);
     motion.addEventListener("change", onMotion);
     resize();
@@ -228,7 +235,7 @@ export default function InteractiveGlobe() {
 
   return (
     <div className="space-scene studio-globe">
-      <div className="globe-surface" tabIndex={0} role="group"
+      <div className="globe-surface" tabIndex={0} role="group" aria-roledescription="interactive globe"
         aria-label="Interactive digital globe. Drag horizontally or use left and right arrow keys to rotate."
         onPointerDown={(event) => {
           if (event.pointerType === "mouse" && event.button !== 0) return;
@@ -262,7 +269,7 @@ export default function InteractiveGlobe() {
       <div className="globe-service-console">
         <p className="globe-purpose-label">YOUR NEXT MOVE STARTS HERE</p>
         <h2>What would you like to build?</h2>
-        <div className="globe-destinations" aria-label="Choose a Crestlane service">
+        <div className="globe-destinations" role="group" aria-label="Choose a Crestlane service">
           {destinations.map((destination, index) => (
             <button
               type="button"
@@ -293,15 +300,14 @@ export default function InteractiveGlobe() {
         </button>
       </div>
       <div className="globe-controls">
-
         <span>DRAG TO EXPLORE</span>
-        <button type="button" aria-pressed={!playing}
+        <button type="button" aria-pressed={!playing} disabled={reducedMotion}
           onClick={() => {
             paused.current = !paused.current;
             setPlaying(!paused.current);
             requestRender.current();
           }}>
-          {playing ? "Pause rotation" : "Resume rotation"}
+          {reducedMotion ? "Motion reduced" : playing ? "Pause rotation" : "Resume rotation"}
         </button>
       </div>
     </div>

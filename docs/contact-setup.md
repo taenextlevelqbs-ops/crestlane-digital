@@ -84,9 +84,9 @@ Create an Upstash Redis database, add its REST URL and token as encrypted Vercel
 ## Current validation
 
 - `npm run test:contact`: 10 passed; provider responses are mocked.
-- `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium npm run test:browser`: 11 passed, including 320/390/768/1440 px layouts.
+- `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium npm run test:browser`: 13 passed, including case-study navigation and 320/390/768/1440 px layouts.
 - `npx --no-install tsc --noEmit --incremental false`: passed.
-- `npm run lint`: passed with two `<img>` warnings in the pre-existing `app/page.backup.tsx`.
+- `npm run lint`: passed.
 - `npm run build`: passed.
 - No live email or inbox delivery has been verified; production credentials and DNS verification are not configured in this environment.
 

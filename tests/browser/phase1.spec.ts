@@ -10,15 +10,16 @@ test("mobile menu supports keyboard, Escape, outside dismissal and destination f
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
   const toggle = page.getByRole("button", { name: "Open menu", exact: true });
+  const mainNavigation = page.getByRole("navigation", { name: "Main navigation" });
   const rect = await toggle.boundingBox();
   expect(rect!.width).toBeGreaterThanOrEqual(44); expect(rect!.height).toBeGreaterThanOrEqual(44);
   await toggle.focus(); await page.keyboard.press("Enter");
-  await expect(page.locator("nav")).toBeVisible();
-  await page.keyboard.press("Tab"); await expect(page.locator('nav a[href="#services"]')).toBeFocused();
-  await page.keyboard.press("Escape"); await expect(page.locator("nav")).toBeHidden(); await expect(toggle).toBeFocused();
-  await toggle.click(); await page.locator(".crestlane-logo-link").click(); await expect(page.locator("nav")).toBeHidden();
-  await toggle.click(); await page.locator('nav a[href="#work"]').click();
-  await expect(page.locator("nav")).toBeHidden(); await expect(page.locator("#work")).toBeFocused();
+  await expect(mainNavigation).toBeVisible();
+  await page.keyboard.press("Tab"); await expect(mainNavigation.locator('a[href="#services"]')).toBeFocused();
+  await page.keyboard.press("Escape"); await expect(mainNavigation).toBeHidden(); await expect(toggle).toBeFocused();
+  await toggle.click(); await page.locator(".crestlane-logo-link").click(); await expect(mainNavigation).toBeHidden();
+  await toggle.click(); await mainNavigation.locator('a[href="#work"]').click();
+  await expect(mainNavigation).toBeHidden(); await expect(page.locator("#work")).toBeFocused();
 });
 
 for (const width of [320, 390, 768, 1440]) {
@@ -79,6 +80,33 @@ test("existing filters, service selection and workflow interactions still work",
   await expect(page.locator(".connected-preview h4")).toHaveText("Coaches work from one list.");
 });
 
+test("portfolio identities load and the About process and footer navigation are present", async ({ page }) => {
+  await page.goto("/");
+  const identities = page.locator(".studio-project-visual img");
+  await expect(identities).toHaveCount(5);
+  for (let index = 0; index < await identities.count(); index++) {
+    const image = identities.nth(index);
+    await image.scrollIntoViewIfNeeded();
+    await expect.poll(() => image.evaluate((item: HTMLImageElement) => item.complete && item.naturalWidth > 0)).toBe(true);
+    await expect(image).toHaveAttribute("alt", /project identity/);
+  }
+  await expect(page.locator(".studio-process li")).toHaveCount(3);
+  await page.getByRole("link", { name: "About Crestlane" }).click();
+  await expect(page).toHaveURL(/#about$/);
+  await expect(page.locator("#about")).toBeInViewport();
+});
+
+test("case studies keep site navigation and fit phone, tablet and desktop widths", async ({ page }) => {
+  for (const width of [390, 768, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/work/dmv-attack");
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    const navigation = page.getByRole("navigation", { name: "Case study navigation" });
+    await expect(navigation.getByRole("link", { name: "Selected work" })).toBeVisible();
+    await expect(navigation.getByRole("link", { name: /Start a project/ })).toBeVisible();
+  }
+});
+
 
 test("case studies, canonical metadata, sitemap and robots are available", async ({ page }) => {
   await page.goto("/");
@@ -107,4 +135,5 @@ test("reduced motion draws a still globe without starting continuous animation",
   await page.goto("/"); await page.waitForTimeout(700);
   expect(await page.evaluate(() => (window as unknown as Window & { __frameCount: number }).__frameCount)).toBeLessThan(5);
   await expect(page.locator("canvas")).toBeVisible();
+  await expect(page.getByRole("button", { name: "Motion reduced" })).toBeDisabled();
 });

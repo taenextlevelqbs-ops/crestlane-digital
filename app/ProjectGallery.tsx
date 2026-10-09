@@ -14,27 +14,12 @@ type Project = {
   url: string;
 };
 
-const projectDetails: Record<string, { focus: string; tools: string[] }> = {
-  "NOVA Sports Live": {
-    focus: "Bring sports information into one place so fans can follow teams and find the numbers they care about.",
-    tools: ["Scores & standings", "Team information", "Rankings & coverage"],
-  },
-  "DMV Attack": {
-    focus: "Connect the organization's public website with tools for running tryouts and supporting coaches.",
-    tools: ["Tryout registration", "Coach administration", "Organization information"],
-  },
-  "Coach Tae QB": {
-    focus: "Give athletes and parents a clear introduction to quarterback coaching and the next step toward training.",
-    tools: ["Training information", "Program presentation", "Parent inquiries"],
-  },
-  "Maverick Athletics Training": {
-    focus: "Introduce the training business through a branded digital home with clear program information.",
-    tools: ["Business identity", "Training programs", "Service information"],
-  },
-  "Merriton Federal": {
-    focus: "Present a professional services company with clear information and a credible digital presence.",
-    tools: ["Company introduction", "Service presentation", "Professional branding"],
-  },
+const projectDetails: Record<string, string[]> = {
+  "NOVA Sports Live": ["Scores & schedules", "Team information", "Regional coverage"],
+  "DMV Attack": ["Tryout registration", "Coach tools", "Program information"],
+  "Coach Tae QB": ["Training programs", "Athlete development", "Parent inquiries"],
+  "Maverick Athletics Training": ["Training programs", "Business identity", "Service information"],
+  "Merriton Federal": ["Company introduction", "Service information", "Professional branding"],
 };
 
 export default function ProjectGallery({ projects }: { projects: Project[] }) {
@@ -46,7 +31,7 @@ export default function ProjectGallery({ projects }: { projects: Project[] }) {
 
   return (
     <div className="studio-projects">
-      <div className="studio-project-filters" aria-label="Filter projects">
+      <div className="studio-project-filters" role="group" aria-label="Filter projects">
         {filters.map((item) => (
           <button key={item} type="button" aria-pressed={filter === item}
             onClick={() => setFilter(item)}>{item}</button>
@@ -60,9 +45,9 @@ export default function ProjectGallery({ projects }: { projects: Project[] }) {
             <article className="studio-project" key={project.name}>
               <div className="studio-project-visual">
                 <span className="studio-small-label">{project.category}</span>
-                <Image src={project.image} alt={`${project.name} logo`}
+                <Image src={project.image} alt={`${project.name} project identity`}
                   width={420} height={260} />
-                <span className="studio-project-caption">SELECTED CRESTLANE WORK</span>
+                <span className="studio-project-caption">PROJECT IDENTITY · LIVE SITE LINK BELOW</span>
               </div>
               <div className="studio-project-copy">
                 <h3>{project.name}</h3>
@@ -70,17 +55,9 @@ export default function ProjectGallery({ projects }: { projects: Project[] }) {
                 {project.projectSlug && <Link className="studio-project-visit" href={`/work/${project.projectSlug}`}>
                   Read case study <Arrow direction="right" />
                 </Link>}
-                {details && (
-                  <>
-                    <div className="studio-project-tags">
-                      {details.tools.map((tool) => <span key={tool}>{tool}</span>)}
-                    </div>
-                    <details className="studio-project-story">
-                      <summary>Explore the project <Arrow direction="down" /></summary>
-                      <p>{details.focus}</p>
-                    </details>
-                  </>
-                )}
+                {details && <ul className="studio-project-tags" aria-label={`${project.name} features`}>
+                  {details.map((tool) => <li key={tool}>{tool}</li>)}
+                </ul>}
                 <a href={project.url} target="_blank" rel="noopener noreferrer"
                   className="studio-project-visit">
                   Visit website <Arrow />
