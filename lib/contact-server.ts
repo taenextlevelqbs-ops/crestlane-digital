@@ -30,7 +30,14 @@ export function createContactHandler(options: {
       return reply({ message: "Online inquiries are temporarily unavailable. Please contact us directly. Your inquiry has not been sent." }, 503);
     }
     const expectedOrigin = options.env.CONTACT_SITE_ORIGIN || `${url.protocol}//${request.headers.get("host") || url.host}`;
-    if (!origin || origin !== expectedOrigin || request.headers.get("sec-fetch-site") === "cross-site") {
+    const allowedOrigins = new Set([expectedOrigin]);
+    // Crestlane operates on both the apex and www custom domains.
+    // Permit these two exact HTTPS origins without trusting arbitrary Host headers.
+    if (expectedOrigin === "https://crestlanedigital.com" || expectedOrigin === "https://www.crestlanedigital.com") {
+      allowedOrigins.add("https://crestlanedigital.com");
+      allowedOrigins.add("https://www.crestlanedigital.com");
+    }
+    if (!origin || !allowedOrigins.has(origin) || request.headers.get("sec-fetch-site") === "cross-site") {
       return reply({ message: "Please submit the form from the Crestlane website." }, 403);
     }
     if (request.headers.get("content-type")?.split(";")[0].trim() !== "application/json") {
