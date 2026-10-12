@@ -77,6 +77,7 @@ const projects = [
         copy: "Scores, teams, rankings, and coverage brought together for Northern Virginia sports.",
         image: "/novasportslive.png",
         url: "https://novasportslive.com",
+        kind: "platform" as const,
     },
     {
         name: "DMV Attack",
@@ -85,6 +86,7 @@ const projects = [
         copy: "A football organization's digital home, with tryout registration and coach administration tools.",
         image: "/dmvattack.jpeg",
         url: "https://dmvattack.com",
+        kind: "platform" as const,
     },
     {
         name: "Coach Tae QB",
@@ -93,6 +95,7 @@ const projects = [
         copy: "A clear home for quarterback training, programs, and parent inquiries.",
         image: "/CoachTaeqb.png",
         url: "https://coachtaeqb.com",
+        kind: "website" as const,
     },
     {
         name: "Maverick Athletics Training",
@@ -100,6 +103,7 @@ const projects = [
         copy: "A branded website introducing the business and its training programs.",
         image: "/maverickathleticstraining.PNG",
         url: "https://www.maverickathleticstraining.com/",
+        kind: "website" as const,
     },
     {
         name: "Merriton Federal",
@@ -107,6 +111,7 @@ const projects = [
         copy: "A professional digital presence presenting the company and its services.",
         image: "/Merriton Transparent Logo.png",
         url: "https://www.merritonfederal.com/",
+        kind: "website" as const,
     },
 ];
 export default function Home() {

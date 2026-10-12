@@ -72,8 +72,8 @@ test("unavailable server and network errors preserve inquiry details", async ({ 
 
 test("existing filters, service selection and workflow interactions still work", async ({ page }) => {
   await page.goto("/"); await page.getByRole("button", { name: "Platforms & tools", exact: true }).click();
-  await expect(page.locator(".studio-project")).toHaveCount(2);
-  await page.getByRole("button", { name: "Business websites", exact: true }).click(); await expect(page.locator(".studio-project")).toHaveCount(3);
+  await expect(page.locator(".featured-project, .project-register-row")).toHaveCount(2);
+  await page.getByRole("button", { name: "Business websites", exact: true }).click(); await expect(page.locator(".featured-project, .project-register-row")).toHaveCount(3);
   await page.locator(".globe-destinations button").nth(3).click(); await page.getByRole("button", { name: "Explore this service" }).click();
   await expect(page.locator(".studio-service-detail h3")).toContainText("Security");
   await page.locator(".connected-types button").nth(1).click(); await page.getByRole("button", { name: "Next step", exact: true }).click();
@@ -82,18 +82,37 @@ test("existing filters, service selection and workflow interactions still work",
 
 test("portfolio identities load and the About process and footer navigation are present", async ({ page }) => {
   await page.goto("/");
-  const identities = page.locator(".studio-project-visual img");
+  const identities = page.locator(".project-mark-stage img, .project-register-mark img");
   await expect(identities).toHaveCount(5);
   for (let index = 0; index < await identities.count(); index++) {
     const image = identities.nth(index);
     await image.scrollIntoViewIfNeeded();
     await expect.poll(() => image.evaluate((item: HTMLImageElement) => item.complete && item.naturalWidth > 0)).toBe(true);
-    await expect(image).toHaveAttribute("alt", /project identity/);
+    await expect(image).toHaveAttribute("alt", /brand mark/);
   }
+  await expect(page.getByText("CLIENT BRAND ASSET")).toHaveCount(2);
+  await expect(page.getByRole("heading", { name: "Digital homes for growing teams." })).toBeVisible();
   await expect(page.locator(".studio-process li")).toHaveCount(3);
   await page.getByRole("link", { name: "About Crestlane" }).click();
   await expect(page).toHaveURL(/#about$/);
   await expect(page.locator("#about")).toBeInViewport();
+});
+
+test("portfolio is readable and actions stay touch-sized across phone, tablet and desktop", async ({ page }) => {
+  for (const width of [320, 390, 768, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/#work");
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    const caseLink = page.locator(".featured-project .project-action").first();
+    const caseLinkBox = await caseLink.boundingBox();
+    expect(caseLinkBox!.height).toBeGreaterThanOrEqual(44);
+    const supportingRow = page.locator(".project-register-row").first();
+    await expect(supportingRow.locator(".project-register-description > span")).not.toBeEmpty();
+    const supportingLink = await supportingRow.locator(".project-register-link").boundingBox();
+    expect(supportingLink!.width).toBeGreaterThanOrEqual(35);
+    expect(supportingLink!.height).toBeGreaterThanOrEqual(44);
+    await page.screenshot({ path: `test-results/portfolio-${width}.png`, fullPage: false });
+  }
 });
 
 test("case studies keep site navigation and fit phone, tablet and desktop widths", async ({ page }) => {
