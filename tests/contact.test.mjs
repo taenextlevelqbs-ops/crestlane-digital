@@ -59,7 +59,7 @@ test('provider acceptance returns accepted, never delivered, and uses fixed reci
     return Response.json({id:'provider-test-id'});
   });
   const result=await run(request());const body=await result.json();
-  assert.equal(result.status,202);assert.equal(body.status,'accepted');assert.match(body.message,/delivery has not yet been confirmed/);
+  assert.equal(result.status,202);assert.equal(body.status,'accepted');assert.match(body.message,/delivery has not yet been confirmed/);assert.match(body.message,/accepted your inquiry for sending/i);assert.doesNotMatch(body.message,/delivered successfully|sent successfully/i);
   assert.deepEqual(payload.to,['sales@example.com']);assert.equal(payload.reply_to,data.email);
   assert.ok(!JSON.stringify(body).includes(env.RESEND_API_KEY));assert.ok(!payload.text.includes('companyFax'));
 });
