@@ -30,7 +30,7 @@ for (const width of [320, 390, 768, 1440]) {
     await expect(page.getByRole("checkbox")).toHaveCount(5);
     await page.getByRole("checkbox", { name: "Automation & AI" }).check();
     await expect(page.getByRole("checkbox", { name: "Automation & AI" })).toBeChecked();
-    await page.locator("#contact").screenshot({ path: `test-results/contact-${width}.png` });
+    await page.locator("#contact").screenshot({ caret: 'initial', path: `test-results/contact-${width}.png` });
   });
 }
 
@@ -111,7 +111,7 @@ test("portfolio is readable and actions stay touch-sized across phone, tablet an
     const supportingLink = await supportingRow.locator(".project-register-link").boundingBox();
     expect(supportingLink!.width).toBeGreaterThanOrEqual(35);
     expect(supportingLink!.height).toBeGreaterThanOrEqual(44);
-    await page.screenshot({ path: `test-results/portfolio-${width}.png`, fullPage: false });
+    await page.screenshot({ caret: 'initial', path: `test-results/portfolio-${width}.png`, fullPage: false });
   }
 });
 

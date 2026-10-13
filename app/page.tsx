@@ -7,6 +7,7 @@ import ServiceExplorer from "./ServiceExplorer";
 import ProjectGallery from "./ProjectGallery";
 import WorkflowDemo from "./WorkflowDemo";
 import InquiryForm from "./InquiryForm";
+import CommunicationHub from "./CommunicationHub";
 const services = [
     {
         "title": "Websites that stand out.",
@@ -135,7 +136,7 @@ export default function Home() {
               We build the websites, custom software, and connected workflows that help your business move forward.
             </p>
             <div className="buttons">
-              <a className="button primary" href="#contact">{iconText("Start a project \u2197")}</a>
+              <a className="button primary" href="#connect">{iconText("Start a project \u2197")}</a>
               <a className="button text-link" href="#work">{iconText("See selected work \u2193")}</a>
             </div>
             <div className="hero-note">
@@ -154,6 +155,8 @@ export default function Home() {
           <a href="#services">{iconText("Explore our capabilities \u2193")}</a>
         </div>
       </section>
+
+      <CommunicationHub />
 
       <section className="section services-section wrap" id="services" tabIndex={-1} aria-labelledby="services-title">
         <div className="section-heading">
@@ -228,7 +231,8 @@ export default function Home() {
           <a href="#services">Services</a>
           <a href="#work">Selected work</a>
           <a href="#about">About Crestlane</a>
-          <a href="#contact">Start a project</a>
+          <a href="#connect">Start a project</a>
+          <a href="/portal">Client portal</a>
         </nav>
         <a href="#home">{iconText("Back to top \u2191")}</a>
         <span>© {new Date().getFullYear()} Crestlane Digital</span>
