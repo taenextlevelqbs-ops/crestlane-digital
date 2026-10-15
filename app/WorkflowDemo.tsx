@@ -111,14 +111,14 @@ export default function WorkflowDemo() {
         <div className="connected-heading">
           <div>
             <p className="eyebrow">02 / SEE HOW IT COULD WORK</p>
-            <h2>Your everyday work.<br /><span>Connected, step by step.</span></h2>
+            <h2>Less busywork.<br /><span>More momentum.</span></h2>
           </div>
-          <p>Explore a practical example. Choose your organization, then follow the process from start to finish.</p>
+          <p>See how a smoother workflow could look.</p>
         </div>
 
         <div className="connected-layout">
           <div className="connected-overview">
-            <p className="connected-label">CHOOSE YOUR ORGANIZATION</p>
+            <p className="connected-label">PICK AN EXAMPLE</p>
             <div className="connected-types" aria-label="Organization examples">
               {examples.map((example, index) => (
                 <button type="button" key={example.name}
@@ -131,17 +131,17 @@ export default function WorkflowDemo() {
               ))}
             </div>
             <div className="connected-benefit">
-              <span>THE OPPORTUNITY</span>
+              <span>WHY IT HELPS</span>
               <p>{current.benefit}</p>
             </div>
             <a className="connected-contact" href="#contact">
-              Talk about your process <Arrow />
+              Discuss your workflow <Arrow />
             </a>
           </div>
 
           <div className="connected-panel">
             <div className="connected-panel-top">
-              <span><i aria-hidden="true" />INTERACTIVE EXAMPLE</span>
+              <span><i aria-hidden="true" />WORKFLOW PREVIEW</span>
               <span>0{organization + 1} / 03</span>
             </div>
             <h3>{current.title}</h3>
@@ -168,7 +168,7 @@ export default function WorkflowDemo() {
                 ))}
               </ul>
               <div className="connected-result">
-                <span>WHAT THIS ENABLES</span>
+                <span>THE RESULT</span>
                 <p>{preview.result}</p>
               </div>
             </div>
@@ -181,7 +181,7 @@ export default function WorkflowDemo() {
               </button>
             </div>
             <p className="connected-note">
-              Illustrative examples—not live submissions. Your implementation is scoped around your tools, access requirements, and approval process.
+              Examples only. Your solution is tailored to your business.
             </p>
           </div>
         </div>
