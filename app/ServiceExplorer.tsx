@@ -45,7 +45,7 @@ export default function ServiceExplorer({ services }: { services: Service[] }) {
             <Arrow direction="right" />
           </button>
         ))}
-        <p className="studio-service-index-note">Start with a website, a workflow, or the part of work that needs a better system.</p>
+        <p className="studio-service-index-note">Pick a service to explore.</p>
       </div>
       <article className="studio-service-detail" id="studio-service-detail"
         aria-live="polite" aria-atomic="true">
@@ -55,7 +55,7 @@ export default function ServiceExplorer({ services }: { services: Service[] }) {
           <p className="studio-service-copy">{service.copy}</p>
         </div>
         <ul className="studio-capabilities">
-          {service.details.map((detail, index) => (
+          {service.details.slice(0, 3).map((detail, index) => (
             <li key={detail}>
               <span aria-hidden="true">0{index + 1}</span>
               <p>{detail}</p>
@@ -63,7 +63,7 @@ export default function ServiceExplorer({ services }: { services: Service[] }) {
           ))}
         </ul>
         <div className="studio-service-result">
-          <span>WHAT THIS HELPS YOU DO</span>
+          <span>THE RESULT</span>
           <p>{service.outcome}</p>
         </div>
         <a className="button primary" href="#contact">
