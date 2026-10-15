@@ -788,3 +788,41 @@ footer > span { width: 100%; color: #75849b; font: 9px var(--font-geist-mono), m
   .button:hover { transform: none; }
   .featured-project:hover .project-mark-stage img { transform: none; }
 }
+
+/* Compact service and workflow sections, especially on phones. */
+@media (max-width: 700px) {
+  .services-section { padding-block: 52px; }
+  .services-section .section-heading { margin-bottom: 22px; }
+  .services-section .section-heading h2 { font-size: clamp(36px, 10vw, 48px); line-height: 1.04; }
+  .services-section .section-heading > p:last-child { line-height: 1.5; }
+  .studio-service-picker { padding-block: 12px; }
+  .studio-service-picker > p:first-child { margin-bottom: 6px; }
+  .studio-service-picker button { min-height: 52px; grid-template-columns: 27px minmax(0,1fr) 18px; padding-block: 7px; }
+  .studio-service-choice { gap: 2px; }
+  .studio-service-choice small { overflow-wrap: anywhere; line-height: 1.35; }
+  .studio-service-index-note { display: none; }
+  .studio-service-detail { padding-block: 21px 12px; }
+  .studio-service-detail h3 { font-size: clamp(29px, 8.5vw, 36px); }
+  .studio-service-copy { line-height: 1.5; }
+  .studio-capabilities { margin: 15px 0; }
+  .studio-capabilities li { padding: 8px 0; }
+  .studio-service-result { padding-block: 12px; }
+  .connected-demo { padding-block: 52px; }
+  .connected-heading { margin-bottom: 20px; }
+  .connected-heading h2 { font-size: clamp(34px, 9vw, 46px); line-height: 1.05; }
+  .connected-heading > p { line-height: 1.5; }
+  .connected-layout { gap: 17px; }
+  .connected-types { display: grid; grid-template-columns: 1fr; }
+  .connected-types button { min-height: 44px; }
+  .connected-benefit { margin: 12px 0 5px; }
+  .connected-benefit p { margin-top: 4px; }
+  .connected-panel { padding: 17px 14px; }
+  .connected-panel > h3 { margin: 13px 0; }
+  .connected-preview { margin-top: 14px; }
+  .connected-preview li { padding: 6px 0; }
+  .connected-result { margin-top: 12px; }
+}
+@media (max-width: 370px) {
+  .studio-service-picker button { grid-template-columns: 23px minmax(0,1fr) 16px; gap: 7px; }
+  .connected-panel-top { font-size: 8px; }
+}
