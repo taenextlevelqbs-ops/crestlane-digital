@@ -11,7 +11,7 @@ import CommunicationHub from "./CommunicationHub";
 const services = [
     {
         "title": "Websites that stand out.",
-        "copy": "Turn visitors into inquiries with a fast, polished website that explains what you offer and makes taking action easy.",
+        "copy": "Fast, polished websites that turn visitors into customers.",
         "examples": "Business websites · Online stores · Booking · Redesigns",
         "details": [
             "Business websites and landing pages with clear service information and calls to action.",
@@ -23,7 +23,7 @@ const services = [
     },
     {
         "title": "Software built around you.",
-        "copy": "Bring the work you manage across spreadsheets, messages, and separate tools into one practical system.",
+        "copy": "Bring your tools and information into one simple system.",
         "examples": "Dashboards · Portals · Registration · Reporting",
         "details": [
             "Customer and parent portals for accessing information and managing requests.",
@@ -35,7 +35,7 @@ const services = [
     },
     {
         "title": "Less busywork. More business.",
-        "copy": "Connect your tools and automate repeatable tasks, with AI added where it can provide a useful, reliable shortcut.",
+        "copy": "Automate repetitive work and keep your tools connected.",
         "examples": "Lead follow-up · Reminders · Connected tools · AI",
         "details": [
             "Inquiry routing, lead tracking, and follow-up workflows.",
@@ -47,7 +47,7 @@ const services = [
     },
     {
         "title": "Security built into your website.",
-        "copy": "Protect the information people share with you through practical safeguards designed around your website and its users.",
+        "copy": "Practical protection for your website and customer data.",
         "examples": "Secure access · Form protection · Updates · Backups",
         "details": [
             "HTTPS setup, secure configuration, and careful handling of API keys and credentials.",
@@ -59,7 +59,7 @@ const services = [
     },
     {
         "title": "Support beyond launch.",
-        "copy": "Keep your website and systems useful as your business grows, with a clear plan for maintenance and improvements.",
+        "copy": "Keep your website secure, current, and running smoothly.",
         "examples": "Maintenance · Monitoring · Troubleshooting · Improvements",
         "details": [
             "Agreed maintenance plans for software updates and routine checks.",
@@ -161,8 +161,8 @@ export default function Home() {
       <section className="section services-section wrap" id="services" tabIndex={-1} aria-labelledby="services-title">
         <div className="section-heading">
           <p className="eyebrow">01 / WHAT WE BUILD</p>
-          <h2 id="services-title">Technology should make the work <em>easier.</em></h2>
-          <p>Start with the problem. We’ll shape the right digital experience around the way your people already work.</p>
+          <h2 id="services-title">Better tools.<br /><em>Less hassle.</em></h2>
+          <p>Websites, software, and automation built around your business.</p>
         </div>
         <ServiceExplorer services={services}/>
       </section>
