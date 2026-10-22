@@ -110,8 +110,8 @@ export default function WorkflowDemo() {
       <div className="wrap">
         <div className="connected-heading">
           <div>
-            <p className="eyebrow">02 / SEE HOW IT COULD WORK</p>
-            <h2>Your everyday work.<br /><span>Connected, step by step.</span></h2>
+            <p className="eyebrow">03 / THE WORK BEHIND THE WEBSITE</p>
+            <h2>Less friction.<br /><em>More momentum.</em></h2>
           </div>
           <p>Explore a practical example. Choose your organization, then follow the process from start to finish.</p>
         </div>

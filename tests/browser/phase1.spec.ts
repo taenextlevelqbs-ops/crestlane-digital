@@ -74,7 +74,7 @@ test("existing filters, service selection and workflow interactions still work",
   await page.goto("/"); await page.getByRole("button", { name: "Platforms & tools", exact: true }).click();
   await expect(page.locator(".featured-project, .project-register-row")).toHaveCount(2);
   await page.getByRole("button", { name: "Business websites", exact: true }).click(); await expect(page.locator(".featured-project, .project-register-row")).toHaveCount(3);
-  await page.locator(".globe-destinations button").nth(3).click(); await page.getByRole("button", { name: "Explore this service" }).click();
+  await page.locator(".studio-service-picker button").nth(3).click();
   await expect(page.locator(".studio-service-detail h3")).toContainText("Security");
   await page.locator(".connected-types button").nth(1).click(); await page.getByRole("button", { name: "Next step", exact: true }).click();
   await expect(page.locator(".connected-preview h4")).toHaveText("Coaches work from one list.");
@@ -82,16 +82,16 @@ test("existing filters, service selection and workflow interactions still work",
 
 test("portfolio identities load and the About process and footer navigation are present", async ({ page }) => {
   await page.goto("/");
-  const identities = page.locator(".project-mark-stage img, .project-register-mark img");
+  const identities = page.locator(".project-preview img");
   await expect(identities).toHaveCount(5);
   for (let index = 0; index < await identities.count(); index++) {
     const image = identities.nth(index);
     await image.scrollIntoViewIfNeeded();
     await expect.poll(() => image.evaluate((item: HTMLImageElement) => item.complete && item.naturalWidth > 0)).toBe(true);
-    await expect(image).toHaveAttribute("alt", /brand mark/);
+    await expect(image).toHaveAttribute("alt", /brand mark|website preview/);
   }
-  await expect(page.getByText("CLIENT BRAND ASSET")).toHaveCount(2);
-  await expect(page.getByRole("heading", { name: "Digital homes for growing teams." })).toBeVisible();
+  await expect(page.locator(".featured-project .browser-bar")).toHaveCount(2);
+  await expect(page.getByRole("heading", { name: "Coach Tae QB", exact: true })).toBeVisible();
   await expect(page.locator(".studio-process li")).toHaveCount(3);
   await page.getByRole("link", { name: "About Crestlane" }).click();
   await expect(page).toHaveURL(/#about$/);
@@ -107,8 +107,8 @@ test("portfolio is readable and actions stay touch-sized across phone, tablet an
     const caseLinkBox = await caseLink.boundingBox();
     expect(caseLinkBox!.height).toBeGreaterThanOrEqual(44);
     const supportingRow = page.locator(".project-register-row").first();
-    await expect(supportingRow.locator(".project-register-description > span")).not.toBeEmpty();
-    const supportingLink = await supportingRow.locator(".project-register-link").boundingBox();
+    await expect(supportingRow.locator(".project-summary")).not.toBeEmpty();
+    const supportingLink = await supportingRow.locator(".project-actions .project-action").first().boundingBox();
     expect(supportingLink!.width).toBeGreaterThanOrEqual(35);
     expect(supportingLink!.height).toBeGreaterThanOrEqual(44);
     await page.screenshot({ caret: 'initial', path: `test-results/portfolio-${width}.png`, fullPage: false });
@@ -143,7 +143,7 @@ test("case studies, canonical metadata, sitemap and robots are available", async
   }
 });
 
-test("reduced motion draws a still globe without starting continuous animation", async ({ page }) => {
+test("reduced motion keeps the project preview still without continuous animation", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.addInitScript(() => {
     let count = 0;
@@ -153,6 +153,7 @@ test("reduced motion draws a still globe without starting continuous animation",
   });
   await page.goto("/"); await page.waitForTimeout(700);
   expect(await page.evaluate(() => (window as unknown as Window & { __frameCount: number }).__frameCount)).toBeLessThan(5);
-  await expect(page.locator("canvas")).toBeVisible();
-  await expect(page.getByRole("button", { name: "Motion reduced" })).toBeDisabled();
+  await expect(page.locator(".hero-project")).toBeVisible();
+  await expect(page.locator(".hero-project")).toHaveCSS("transform", "none");
+  await expect(page.locator("canvas")).toHaveCount(0);
 });

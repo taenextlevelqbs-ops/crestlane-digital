@@ -765,3 +765,44 @@
 .hub-direct > button {
   min-height: 48px;
 }
+
+/* Crestlane studio: one restrained visual system across public and private tools. */
+#home .communication-section { color:var(--ink-text); color-scheme:light; background:var(--paper); width:100%; padding-inline:max(var(--page-gutter),calc((100% - var(--page-width))/2)); border-top:1px solid var(--line-dark); padding-block:85px; }
+#home .hub-heading { gap:45px; margin-bottom:30px; }
+#home .hub-heading .eyebrow { color:#56664a; }
+#home .hub-heading h2 { font-size:clamp(38px,4vw,56px); }
+#home .hub-heading em { color:#566a43; }
+#home .hub-heading>div>p:not(.eyebrow) { color:#65725a; font-size:14px; }
+#home .hub-presence { color:#66745b; }
+#home .hub-presence i { background:#87977b; }
+#home .hub-presence i.available { background:#4c6b32; box-shadow:none; }
+#home .hub-cards { gap:0; border-block:1px solid #c9d0bd; }
+#home .hub-card { min-height:235px; background:transparent; border:0; border-right:1px solid #c9d0bd; border-radius:0; padding:26px 22px; transform:none; transition:background .2s; }
+#home .hub-card:last-child { border-right:0; }
+#home .hub-card::before { display:none; }
+#home .hub-card:hover { background:#e9ece1; }
+#home .hub-card>svg { width:24px; height:24px; color:#536c3e; margin-bottom:25px; }
+#home .hub-kicker { color:#56664a; font-size:8px; }
+#home .hub-card h3 { font-size:20px; letter-spacing:-.04em; }
+#home .hub-card p { color:#66735a; font-size:11px; }
+#home .hub-card-action { color:#384e28; font-size:10px; }
+#home .hub-direct { margin-top:22px; color:#66735a; }
+#home .hub-social { color:#66735a; }
+#home .hub-direct span { color:#56664a; }
+#home .hub-panel { color:var(--text); color-scheme:dark; background:#232b20; border-color:#7b8c6b60; border-radius:2px; box-shadow:none; }
+.hub-panel,.hub-notice,.hub-answer,.hub-message,.hub-transcript,.login-card,.workspace-card,.workspace-stats article { border-radius:3px; }
+.hub-notice,.hub-answer { background:#c3d7a910; border-color:#91a47b50; }
+.hub-form input,.hub-form select,.hub-form textarea { background:#1c2319; border-color:#758c6060; border-radius:2px; }
+.hub-steps [aria-current] span { background:var(--lime); color:#24311b; }
+.hub-form .hub-notice { color:#bac9ac; }
+.hub-message.staff { background:#4b60343a; border-color:#9dbf7455; }
+.login-card { background:#232a20; border-color:#79896a50; padding:clamp(25px,5vw,45px); }
+.login-card h1 em { color:var(--lime); }
+.workspace-sidebar { background:#171c15; }
+.workspace-main { background:#1d231b; }
+.workspace-card,.workspace-stats article { background:#252d21; border-color:#71866040; }
+.workspace-sidebar nav button[aria-current],.workspace-list button[aria-pressed="true"] { background:#a2ba7a18; border-color:#a4bc7d50; color:#e5efd8; }
+.workspace-project-tabs button[aria-pressed="true"] { color:var(--lime); border-color:var(--lime); }
+.workspace-login .hub-muted { color:#abb69e; }
+@media(max-width:850px) { #home .hub-cards { grid-template-columns:1fr 1fr; }#home .hub-card { border-bottom:1px solid #c9d0bd; }#home .hub-card:nth-child(2) { border-right:0; }#home .hub-card:nth-last-child(-n+2) { border-bottom:0; } }
+@media(max-width:700px) { #home .communication-section { padding-block:65px; }#home .hub-heading { grid-template-columns:1fr; gap:20px; }#home .hub-heading h2 { font-size:42px; }#home .hub-card { padding:24px 12px; min-height:235px; }#home .hub-card h3 { font-size:19px; }#home .hub-direct>a,#home .hub-direct>button { min-height:44px; } }

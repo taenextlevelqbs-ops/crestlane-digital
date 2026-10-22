@@ -1,13 +1,12 @@
-"use client";
-import { iconText } from "./StudioIcons";
-import Navigation from "./Navigation";
+import Link from "next/link";
 import Image from "next/image";
-import InteractiveGlobe from "./InteractiveGlobe";
+import Navigation from "./Navigation";
 import ServiceExplorer from "./ServiceExplorer";
 import ProjectGallery from "./ProjectGallery";
 import WorkflowDemo from "./WorkflowDemo";
 import InquiryForm from "./InquiryForm";
 import CommunicationHub from "./CommunicationHub";
+import { Arrow } from "./StudioIcons";
 const services = [
     {
         "title": "Websites that stand out.",
@@ -116,126 +115,64 @@ const projects = [
     },
 ];
 export default function Home() {
-    return (<main id="home">
-      <a className="skip-link" href="#services">Skip to services</a>
-
+  return <main id="home">
+    <a className="skip-link" href="#work">Skip to selected work</a>
+    <div className="masthead">
       <header className="header wrap">
         <a className="brand crestlane-logo-link" href="#home" aria-label="Crestlane Digital home">
-          <Image src="/CrestLaneDigitalLogo.jpeg" alt="" width={160} height={160} priority className="crestlane-header-logo"/>
-          <span className="brand-wordmark"><strong>Crestlane</strong><small>Digital studio</small></span>
+          <span className="brand-wordmark"><strong>crestlane<span>.</span></strong><small>DIGITAL STUDIO</small></span>
         </a>
         <Navigation />
       </header>
-
-      <section className="hero" aria-labelledby="hero-title">
-        <div className="hero-grid wrap">
+      <section className="hero wrap" aria-labelledby="hero-title">
+        <div className="hero-topline"><p className="eyebrow">INDEPENDENT THINKING. CONSIDERED EXECUTION.</p><span>NORTHERN VIRGINIA / WORKING EVERYWHERE</span></div>
+        <div className="hero-grid">
           <div className="hero-content">
-            <p className="eyebrow"><span className="status-dot"/>WEB DESIGN · SOFTWARE · SMARTER OPERATIONS</p>
-            <h1 id="hero-title">Make room for<br /><em>what’s next.</em></h1>
-            <p className="hero-description">
-              We build the websites, custom software, and connected workflows that help your business move forward.
-            </p>
-            <div className="buttons">
-              <a className="button primary" href="#connect">{iconText("Start a project \u2197")}</a>
-              <a className="button text-link" href="#work">{iconText("See selected work \u2193")}</a>
-            </div>
-            <div className="hero-note">
-              <span className="hero-note-index">01—03</span>
-              <span>Strategy, design, and engineering.<br />One clear path from idea to launch.</span>
-            </div>
+            <h1 id="hero-title">Good design.<br /><em>Better business.</em></h1>
+            <p className="hero-description">Websites, software, and connected systems. Thoughtfully designed. Built to move your business forward.</p>
+            <div className="buttons"><a className="button primary" href="#contact">Start a conversation <Arrow /></a><a className="button text-link" href="#work">Explore our work <Arrow direction="down" /></a></div>
+            <div className="hero-note"><span className="status-dot" />A clear idea. A considered approach. A better result.</div>
           </div>
-
-          <div className="hero-visual">
-            <span className="hero-visual-label">A BETTER WAY TO WORK, IN EVERY DIRECTION</span>
-            <InteractiveGlobe />
-          </div>
+          <Link className="hero-project" href="/work/dmv-attack" aria-label="View the DMV Attack case study">
+            <div className="hero-project-top"><span>IN FOCUS / 01</span><Arrow /></div>
+            <div className="hero-project-screen"><div className="browser-bar"><i /><i /><i /><span>dmvattack.com</span></div><Image src="/work/dmv-attack.webp" alt="DMV Attack website with its football program and athlete photography" width={1440} height={1000} sizes="(max-width: 800px) 90vw, 45vw" priority /></div>
+            <div className="hero-project-caption"><div><strong>DMV Attack</strong><span>Website & organization tools</span></div><span>VIEW PROJECT ↗</span></div>
+          </Link>
         </div>
-        <div className="hero-bottom wrap">
-          <span>DESIGNED AROUND PEOPLE. BUILT FOR THE WORK AHEAD.</span>
-          <a href="#services">{iconText("Explore our capabilities \u2193")}</a>
-        </div>
+        <div className="hero-bottom"><span>STRATEGY & DESIGN</span><span>WEB & SOFTWARE DEVELOPMENT</span><span>AUTOMATION & ONGOING SUPPORT</span><a href="#work" aria-label="Scroll to selected work"><Arrow direction="down" /></a></div>
       </section>
+    </div>
 
-      <CommunicationHub />
+    <section className="section work-section" id="work" tabIndex={-1} aria-labelledby="work-title"><div className="wrap">
+      <div className="section-heading"><p className="eyebrow">01 / SELECTED WORK</p><h2 id="work-title">Built for real people.<br /><em>Made to work.</em></h2><p>Digital experiences for ambitious businesses, growing teams, and the communities around them.</p></div>
+      <ProjectGallery projects={projects} />
+    </div></section>
 
-      <section className="section services-section wrap" id="services" tabIndex={-1} aria-labelledby="services-title">
-        <div className="section-heading">
-          <p className="eyebrow">01 / WHAT WE BUILD</p>
-          <h2 id="services-title">Technology should make the work <em>easier.</em></h2>
-          <p>Start with the problem. We’ll shape the right digital experience around the way your people already work.</p>
-        </div>
-        <ServiceExplorer services={services}/>
-      </section>
+    <section className="section services-section" id="services" tabIndex={-1} aria-labelledby="services-title"><div className="wrap">
+      <div className="section-heading"><p className="eyebrow">02 / OUR CAPABILITIES</p><h2 id="services-title">The right thinking.<br /><em>The right tools.</em></h2><p>From your first impression to the systems behind it, we connect design and development around what your business needs.</p></div>
+      <ServiceExplorer services={services} />
+    </div></section>
 
-      <WorkflowDemo />
+    <WorkflowDemo />
 
-      <section className="section work-section wrap" id="work" tabIndex={-1} aria-labelledby="work-title">
-        <div className="section-heading">
-          <p className="eyebrow">03 / SELECTED WORK</p>
-          <h2 id="work-title">Real work.<br /><em>Thoughtful technology.</em></h2>
-          <p>A closer look at digital homes and tools built for real teams, athletes, families, and customers.</p>
-        </div>
-        <ProjectGallery projects={projects}/>
-      </section>
+    <section className="section about-section" id="about" tabIndex={-1} aria-labelledby="about-title"><div className="wrap about split">
+      <div><p className="eyebrow">04 / THE CRESTLANE APPROACH</p><h2 id="about-title">Good work starts<br />with <em>understanding.</em></h2><p className="about-aside">Practical thinking.<br />Attention to detail.<br />A clear way forward.</p></div>
+      <div className="about-copy"><p>Your business deserves more than a template and a handoff.</p><p>We take the time to understand how you work, what your customers need, and where your technology can make a difference. Then we design and build around that.</p>
+        <div className="studio-process" aria-label="How a Crestlane project moves forward"><ol>
+          <li><span>01</span><div><h3>Understand first.</h3><p>We get clear on your goals, your audience, and what needs to work better.</p></div></li>
+          <li><span>02</span><div><h3>Build with purpose.</h3><p>We shape the scope, design the experience, and develop the right solution.</p></div></li>
+          <li><span>03</span><div><h3>Make the next step clear.</h3><p>Launch support, a considered handoff, and an agreed plan for what comes next.</p></div></li>
+        </ol></div>
+      </div>
+    </div></section>
 
-      <section className="section wrap about split" id="about" tabIndex={-1} aria-labelledby="about-title">
-        <div>
-          <p className="eyebrow">04 / HOW WE WORK</p>
-          <h2 id="about-title">Good technology should feel like <em>momentum.</em></h2>
-        </div>
-        <div className="about-copy">
-          <p>
-            Crestlane brings product thinking, thoughtful design, and practical engineering to the everyday challenges businesses face.
-          </p>
-          <p>
-            You get a small, senior team that takes the time to understand your operation, explains the trade-offs, and builds only what helps.
-          </p>
-          <div className="studio-process" aria-label="How a Crestlane project moves forward">
-            <p className="studio-small-label">A CLEAR PATH FROM IDEA TO LAUNCH</p>
-            <ol>
-              <li><span>01</span><div><h3>Understand the work</h3><p>We learn how your business runs, where people get stuck, and what a useful result looks like.</p></div></li>
-              <li><span>02</span><div><h3>Design the right system</h3><p>We agree on a practical scope, then shape the experience and technology around it.</p></div></li>
-              <li><span>03</span><div><h3>Build, launch, improve</h3><p>You stay part of the decisions, receive a clear handoff, and know what support comes next.</p></div></li>
-            </ol>
-          </div>
-        </div>
-      </section>
+    <CommunicationHub />
 
-      <section className="contact-section" id="contact" tabIndex={-1}>
-        <div className="wrap split">
-          <div>
-            <p className="eyebrow">05 / START A CONVERSATION</p>
-            <h2>What needs to work <em>better?</em></h2>
-            <p className="section-copy">
-              Tell us what you’re trying to change. We’ll help turn the first conversation into a practical next step.
-            </p>
-          </div>
-          <div className="inquiry-panel">
-            <div className="direct-contact">
-              <a href="tel:+17034314468">{iconText("Call (703) 431-4468 \u2197")}</a>
-<a href="tel:+17039806483">(703) 980-6483</a>
-              <a href="mailto:sales@crestlanedigital.com">{iconText("sales@crestlanedigital.com \u2197")}</a>
-            </div>
-            <InquiryForm />
-          </div>
-        </div>
-      </section>
+    <section className="contact-section" id="contact" tabIndex={-1}><div className="wrap split">
+      <div><p className="eyebrow">06 / START SOMETHING GOOD</p><h2>A better next<br />chapter <em>starts here.</em></h2><p className="section-copy">A new idea. A website that needs more. A process that could work better. Tell us what you have in mind.</p><div className="direct-contact"><a href="mailto:sales@crestlanedigital.com">sales@crestlanedigital.com <Arrow /></a><a href="tel:+17034314468">(703) 431-4468</a><a href="tel:+17039806483">(703) 980-6483</a></div></div>
+      <div className="inquiry-panel"><InquiryForm /></div>
+    </div></section>
 
-      <footer className="wrap">
-        <a className="footer-brand crestlane-footer-link" href="#home" aria-label="Crestlane Digital home">
-          <Image src="/CrestLaneDigitalLogo2.jpeg" alt="" width={190} height={190} className="crestlane-footer-logo"/>
-          <span className="brand-wordmark"><strong>Crestlane</strong><small>Digital studio</small></span>
-        </a>
-        <p>Websites · Software · Smarter operations</p>
-        <nav className="footer-navigation" aria-label="Footer navigation">
-          <a href="#services">Services</a>
-          <a href="#work">Selected work</a>
-          <a href="#about">About Crestlane</a>
-          <a href="#connect">Start a project</a>
-          <a href="/portal">Client portal</a>
-        </nav>
-        <a href="#home">{iconText("Back to top \u2191")}</a>
-        <span>© {new Date().getFullYear()} Crestlane Digital</span>
-      </footer>
-    </main>);
+    <footer className="site-footer"><div className="wrap"><div className="footer-top"><a className="footer-brand" href="#home">crestlane<span>.</span></a><p>Good thinking.<br />Thoughtfully built.</p><nav className="footer-navigation" aria-label="Footer navigation"><a href="#services">Services</a><a href="#work">Selected work</a><a href="#about">About Crestlane</a><a href="#contact">Start a project</a><Link href="/portal">Client portal</Link></nav></div><div className="footer-bottom"><span>© {new Date().getFullYear()} Crestlane Digital</span><span>Northern Virginia & beyond</span><a href="#home">Back to top <Arrow direction="up" /></a></div></div></footer>
+  </main>;
 }

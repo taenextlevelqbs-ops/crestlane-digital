@@ -11,12 +11,12 @@ const config = {
   ],
   urls: {},
 };
-test("communication hub follows the original hero and preserves the globe", async ({
+test("communication tools remain available after the studio approach", async ({
   page,
 }) => {
   await page.goto("/");
-  await expect(page.locator(".hero + #connect")).toBeVisible();
-  await expect(page.locator("canvas")).toBeVisible();
+  await expect(page.locator("#about + #connect")).toBeVisible();
+  await expect(page.locator(".hero-project")).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "Let’s build something great." }),
   ).toBeVisible();

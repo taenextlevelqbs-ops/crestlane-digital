@@ -227,7 +227,7 @@ export default function CommunicationHub() {
     >
       <div className="hub-heading">
         <div>
-          <p className="eyebrow">YOUR NEXT CHAPTER STARTS HERE</p>
+          <p className="eyebrow">05 / LET’S CONNECT</p>
           <h2 id="connect-title">
             Let’s build
             <br />
