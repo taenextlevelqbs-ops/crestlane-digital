@@ -249,6 +249,10 @@ export default function CommunicationHub() {
           </span>
         </div>
       </div>
+      <div className="hub-priority-contact" aria-label="Call or email Crestlane">
+        <a href="tel:+17034314468"><Glyph type="call" /><div><span>LET’S TALK</span><strong>Call us</strong><small>(703) 431-4468</small></div><span className="contact-action-arrow">{iconText("↗")}</span></a>
+        <a href="mailto:sales@crestlanedigital.com"><Glyph type="email" /><div><span>START A CONVERSATION</span><strong>Email us</strong><small>sales@crestlanedigital.com</small></div><span className="contact-action-arrow">{iconText("↗")}</span></a>
+      </div>
       <div className="hub-cards">
         <button onClick={() => open("chat")} className="hub-card hub-featured">
           <Glyph type="chat" />
@@ -291,18 +295,12 @@ export default function CommunicationHub() {
         </button>
       </div>
       <div className="hub-direct">
-        <a href="mailto:sales@crestlanedigital.com">
-          <Glyph type="email" />
-          Email us <span>{iconText("sales@crestlanedigital.com ↗")}</span>
-        </a>
+
         <a href="sms:+17034314468">
           <Glyph type="chat" />
           Text us <span>{iconText("Send a quick message ↗")}</span>
         </a>
-        <a href="tel:+17034314468">
-          <Glyph type="call" />
-          Call us <span>{iconText("(703) 431-4468 ↗")}</span>
-        </a>
+
         <button onClick={() => open("booking")}>
           <Glyph type="booking" />
           Video consultation{" "}

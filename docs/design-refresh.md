@@ -9,3 +9,7 @@ Case studies and the private portal use the same palette. Portal authentication,
 Validation includes public menu and keyboard navigation, all service selections, project filters, loaded project images, contact validation/pending/error states, quote requests, chat, booking requests, reduced motion, case-study navigation, metadata and 320/390/768/1440px layouts. Workspace fixtures exercise client/staff login, project messaging, approvals, uploads, knowledge publishing and authorization boundaries. These are isolated tests; no real inquiries or client messages are sent.
 
 Stripe/payment or other client websites are not changed by this release. Dependency maintenance updates Next.js and matching ESLint configuration to 16.4.2, and resolves production audit advisories. Development-only braces advisories remain in lint tooling; no forced incompatible downgrade is applied.
+
+## Color and motion refinement
+
+Call and email are featured in section 05 (Let’s connect), rather than the hero. The homepage uses brighter lime and teal accents, tinted project frames and brief entrance motion. Scroll motion uses IntersectionObserver without a continuous animation loop; content is visible without JavaScript and reduced-motion preferences disable it. Contact and reduced-motion browser checks pass.

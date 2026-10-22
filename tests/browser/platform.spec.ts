@@ -17,6 +17,8 @@ test("communication tools remain available after the studio approach", async ({
   await page.goto("/");
   await expect(page.locator("#about + #connect")).toBeVisible();
   await expect(page.locator(".hero-project")).toBeVisible();
+  await expect(page.locator(".hero").getByRole("link", { name: /Call us|Email us/ })).toHaveCount(0);
+  await expect(page.locator("#connect").getByRole("link", { name: /Email us/ })).toHaveAttribute("href", "mailto:sales@crestlanedigital.com");
   await expect(
     page.getByRole("heading", { name: "Let’s build something great." }),
   ).toBeVisible();

@@ -248,10 +248,34 @@ h1 em,h2 em { font-family: Georgia,'Times New Roman',serif; font-weight: 400; le
 .project-grid { row-gap:32px; }
 @media(max-width:850px) { .project-register-row { grid-template-columns:85px 1fr auto; gap:18px; }.project-register-row .project-summary { grid-column:2; }.project-register-row .project-actions { grid-column:3; grid-row:1/3; }.project-register-row .project-card-heading { grid-column:2; }.project-register-row .project-preview { grid-column:1; grid-row:1/3; }.project-register-row .project-card-heading>.project-register-link { position:absolute; right:0; }.project-register-row { position:relative; padding-right:50px; }.project-register-row:has(.project-actions) { padding-right:0; }.project-register-row:has(.project-actions) .project-preview { grid-row:1/3; } }
 @media(max-width:700px) { .project-register-row { grid-template-columns:65px minmax(0,1fr) auto; gap:10px 14px; }.project-register-row .project-preview { height:70px; padding:9px; }.project-register-row .project-summary { grid-column:2/-1; line-height:1.7; }.project-register-row:has(.project-actions) .project-summary { grid-column:2; }.project-register-row h3 { font-size:19px; }.project-register-row .project-category { font-size:7px; margin-bottom:6px; }.project-register-row .project-actions .project-action { width:44px; padding:0; font-size:0; border:1px solid #b4bda8; border-radius:50%; }.project-register-row .project-actions .studio-arrow { width:16px; } }
-.hero-direct { display:flex; flex-wrap:wrap; gap:22px 32px; margin-top:34px; padding-top:23px; border-top:1px solid var(--line); }
-.hero-direct>a { display:flex; flex-direction:column; gap:8px; min-height:48px; }
-.hero-direct>a>span { font-size:10px; color:#aab79e; }
-.hero-direct strong { display:inline-flex; align-items:center; gap:12px; color:#e0e7d8; font-size:12px; font-weight:450; }
-.hero-direct .studio-arrow { width:13px; height:13px; }
-.hero-direct a:hover strong { color:var(--lime); }
-@media(max-width:700px) { .hero-direct { margin-top:26px; gap:18px 26px; }.hero-direct strong { font-size:12px; } }
+
+/* More energy, with brief motion and a brighter, controlled accent palette. */
+#home { --lime:#d0f286; --cyan:#92dcd6; --lavender:#c9baff; }
+#home .masthead { position:relative; isolation:isolate; overflow:hidden; background:#141c1b; }
+#home .masthead::before { content:""; position:absolute; z-index:-1; inset:0; pointer-events:none; background:radial-gradient(ellipse at 88% 28%,#469e8a30,transparent 52%),radial-gradient(ellipse at 5% 88%,#adc95112,transparent 45%); }
+#home .hero h1 em { color:#d0f286; }
+#home .hero-content { animation:studio-arrive .75s ease-out both; }
+#home .hero-project { background:#26392e; border-color:#91bf6770; box-shadow:18px 22px 0 #92dcd608; }
+#home .hero-project-top { color:#d0f286; }
+#home .hero-bottom { border-top-color:#a5c89840; }
+#home .hero-bottom>a { color:#d0f286; }
+#home .button.primary:hover { background:#e2ffa5; }
+#home .navigation .nav-contact:hover { background:#d0f286; border-color:#d0f286; color:#20281b; }
+#home .featured-project:nth-child(1) .project-preview { background:#dcebf0; }
+#home .featured-project:nth-child(2) .project-preview { background:#e5edc9; }
+#home .project-card-heading>.project-action:hover,#home .project-register-link:hover { background:#d0f286; border-color:#99b660; }
+#home .studio-service-picker [aria-pressed=true] { border-left:3px solid #597a32; padding-left:13px; background:#e8eddd; }
+#home .studio-service-picker button { transition:background .2s,color .2s; }
+#home .studio-service-picker button:hover { background:#edf0e5; }
+#home .connected-demo { background:#183630; }
+#home .connected-heading h2 em { color:#a5e8dc; }
+#home .connected-panel { background:#25463c; border-color:#8bb69b70; }
+#home .connected-steps [aria-pressed=true] { background:#d0f286; border-color:#d0f286; color:#21331c; }
+#home .contact-section { background:#152620; }
+#home .contact-section h2 em { color:#d0f286; }
+#home .studio-enter { animation:studio-arrive .65s cubic-bezier(.2,.65,.3,1) both; }
+@keyframes studio-arrive { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+@media(prefers-reduced-motion:reduce) {
+  #home .hero-content,#home .studio-enter { animation:none!important; opacity:1!important; transform:none!important; }
+  #home .hero-project { transform:none!important; }
+}
