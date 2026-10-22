@@ -150,6 +150,8 @@ export default function Home() {
       <ProjectGallery projects={projects} />
     </div></section>
 
+    <CommunicationHub />
+
     <section className="section services-section" id="services" tabIndex={-1} aria-labelledby="services-title"><div className="wrap">
       <div className="section-heading"><p className="eyebrow">02 / OUR CAPABILITIES</p><h2 id="services-title">The right thinking.<br /><em>The right tools.</em></h2><p>From your first impression to the systems behind it, we connect design and development around what your business needs.</p></div>
       <ServiceExplorer services={services} />
@@ -168,7 +170,6 @@ export default function Home() {
       </div>
     </div></section>
 
-    <CommunicationHub />
 
     <section className="contact-section" id="contact" tabIndex={-1}><div className="wrap split">
       <div><p className="eyebrow">06 / START SOMETHING GOOD</p><h2>A better next<br />chapter <em>starts here.</em></h2><p className="section-copy">A new idea. A website that needs more. A process that could work better. Tell us what you have in mind.</p><div className="direct-contact"><a href="mailto:sales@crestlanedigital.com">sales@crestlanedigital.com <Arrow /></a><a href="tel:+17034314468">(703) 431-4468</a><a href="tel:+17039806483">(703) 980-6483</a></div></div>

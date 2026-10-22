@@ -11,11 +11,11 @@ const config = {
   ],
   urls: {},
 };
-test("communication tools remain available after the studio approach", async ({
+test("communication tools sit directly below selected websites", async ({
   page,
 }) => {
   await page.goto("/");
-  await expect(page.locator("#about + #connect")).toBeVisible();
+  await expect(page.locator("#work + #connect")).toBeVisible();
   await expect(page.locator(".hero-project")).toBeVisible();
   await expect(page.locator(".hero").getByRole("link", { name: /Call us|Email us/ })).toHaveCount(0);
   await expect(page.locator("#connect").getByRole("link", { name: /Email us/ })).toHaveAttribute("href", "mailto:sales@crestlanedigital.com");

@@ -12,4 +12,4 @@ Stripe/payment or other client websites are not changed by this release. Depende
 
 ## Color and motion refinement
 
-Call and email are featured in section 05 (Let’s connect), rather than the hero. The homepage uses brighter lime and teal accents, tinted project frames and brief entrance motion. Scroll motion uses IntersectionObserver without a continuous animation loop; content is visible without JavaScript and reduced-motion preferences disable it. Contact and reduced-motion browser checks pass.
+Section 05 (Let’s connect), with prominent call and email actions, sits directly below the selected website portfolio, before services. The homepage uses brighter lime and teal accents, tinted project frames and brief entrance motion. Scroll motion uses IntersectionObserver without a continuous animation loop; content is visible without JavaScript and reduced-motion preferences disable it. Contact and reduced-motion browser checks pass.
