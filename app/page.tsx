@@ -72,12 +72,23 @@ const services = [
 ];
 const projects = [
     {
+        name: "Coach Tae QB",
+        projectSlug: "coach-tae-qb",
+        category: "ATHLETE DEVELOPMENT",
+        copy: "A clear home for quarterback training, programs, and parent inquiries.",
+        image: "/CoachTaeqb.png",
+        url: "https://coachtaeqb.com",
+        featured: true,
+        kind: "website" as const,
+    },
+    {
         name: "NOVA Sports Live",
         projectSlug: "nova-sports-live",
         category: "SPORTS INFORMATION PLATFORM",
         copy: "Scores, teams, rankings, and coverage brought together for Northern Virginia sports.",
         image: "/novasportslive.png",
         url: "https://novasportslive.com",
+        featured: true,
         kind: "platform" as const,
     },
     {
@@ -88,15 +99,6 @@ const projects = [
         image: "/dmvattack.jpeg",
         url: "https://dmvattack.com",
         kind: "platform" as const,
-    },
-    {
-        name: "Coach Tae QB",
-        projectSlug: "coach-tae-qb",
-        category: "ATHLETE DEVELOPMENT",
-        copy: "A clear home for quarterback training, programs, and parent inquiries.",
-        image: "/CoachTaeqb.png",
-        url: "https://coachtaeqb.com",
-        kind: "website" as const,
     },
     {
         name: "Maverick Athletics Training",

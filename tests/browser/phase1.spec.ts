@@ -91,6 +91,8 @@ test("portfolio identities load and the About process and footer navigation are 
     await expect(image).toHaveAttribute("alt", /brand mark|website preview/);
   }
   await expect(page.locator(".featured-project .browser-bar")).toHaveCount(2);
+  await expect(page.locator(".featured-project h3")).toHaveText(["Coach Tae QB", "NOVA Sports Live"]);
+  await expect(page.locator(".hero-project")).toHaveAttribute("href", "/work/dmv-attack");
   await expect(page.getByRole("heading", { name: "Coach Tae QB", exact: true })).toBeVisible();
   await expect(page.locator(".studio-process li")).toHaveCount(3);
   await page.getByRole("link", { name: "About Crestlane" }).click();

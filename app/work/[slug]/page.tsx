@@ -37,7 +37,7 @@ export default async function CaseStudyPage(props: Props) {
     <nav className="case-breadcrumb" aria-label="Breadcrumb"><Link href="/#work">Selected work</Link><span aria-hidden="true">/</span><span>{study.name}</span></nav>
     <header className="case-hero">
       <div><p className="eyebrow">{study.category}</p><h1>{study.name}</h1><p className="case-summary">{study.summary}</p><a className="button secondary" href={study.url} target="_blank" rel="noopener noreferrer">Visit the live project <Arrow /><span className="sr-only"> (opens in a new tab)</span></a></div>
-      <div className={`case-brand-visual ${study.slug !== "coach-tae-qb" ? "case-website" : ""}`}><Image src={study.slug === "coach-tae-qb" ? study.image : `/work/${study.slug}.webp`} alt={`${study.name} ${study.slug === "coach-tae-qb" ? "project identity" : "website preview"}`} width={1440} height={1000} sizes="(max-width: 600px) 90vw, 45vw" priority />{study.slug === "coach-tae-qb" && <span>PROJECT IDENTITY</span>}</div>
+      <div className="case-brand-visual case-website"><Image src={`/work/${study.slug}.webp`} alt={`${study.name} website preview`} width={1440} height={1000} sizes="(max-width: 600px) 90vw, 45vw" priority /></div>
     </header>
     <section className="case-facts" aria-label="Project overview">
       <article><span>THE CHALLENGE</span><p>{study.challenge}</p></article>

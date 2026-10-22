@@ -13,3 +13,7 @@ Stripe/payment or other client websites are not changed by this release. Depende
 ## Color and motion refinement
 
 Section 05 (Let’s connect), with prominent call and email actions, sits directly below the selected website portfolio, before services. The homepage uses brighter lime and teal accents, tinted project frames and brief entrance motion. Scroll motion uses IntersectionObserver without a continuous animation loop; content is visible without JavaScript and reduced-motion preferences disable it. Contact and reduced-motion browser checks pass.
+
+## Blue brand alignment and portfolio order
+
+The blue, white and black brand palette now carries through the homepage, case studies and private tools. DMV Attack remains the opening feature; Coach Tae QB is the first large portfolio preview, followed by NOVA Sports Live. Project categories and filter behavior remain separate from featured placement. The Coach Tae preview was rendered from an isolated local checkout of the existing Coach Tae website; that website was not changed or deployed.
