@@ -806,3 +806,10 @@
 .workspace-login .hub-muted { color:#abb69e; }
 @media(max-width:850px) { #home .hub-cards { grid-template-columns:1fr 1fr; }#home .hub-card { border-bottom:1px solid #c9d0bd; }#home .hub-card:nth-child(2) { border-right:0; }#home .hub-card:nth-last-child(-n+2) { border-bottom:0; } }
 @media(max-width:700px) { #home .communication-section { padding-block:65px; }#home .hub-heading { grid-template-columns:1fr; gap:20px; }#home .hub-heading h2 { font-size:42px; }#home .hub-card { padding:24px 12px; min-height:235px; }#home .hub-card h3 { font-size:19px; }#home .hub-direct>a,#home .hub-direct>button { min-height:44px; } }
+#home .hub-direct { grid-template-columns:repeat(5,minmax(0,1fr)); gap:18px; }
+#home .hub-direct svg { color:#536c3e; }
+#home .hub-direct>a,#home .hub-direct>button { min-height:60px; }
+#home .hub-direct span { overflow-wrap:anywhere; }
+@media(max-width:1050px) { #home .hub-direct { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+@media(max-width:700px) { #home .hub-direct { grid-template-columns:1fr 1fr; gap:18px 12px; } }
+@media(max-width:370px) { #home .hub-direct { grid-template-columns:1fr; } }

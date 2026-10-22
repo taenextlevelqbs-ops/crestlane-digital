@@ -131,7 +131,10 @@ export default function Home() {
             <h1 id="hero-title">Good design.<br /><em>Better business.</em></h1>
             <p className="hero-description">Websites, software, and connected systems. Thoughtfully designed. Built to move your business forward.</p>
             <div className="buttons"><a className="button primary" href="#contact">Start a conversation <Arrow /></a><a className="button text-link" href="#work">Explore our work <Arrow direction="down" /></a></div>
-            <div className="hero-note"><span className="status-dot" />A clear idea. A considered approach. A better result.</div>
+            <div className="hero-direct" aria-label="Contact Crestlane directly">
+              <a href="tel:+17034314468"><span>Prefer a call?</span><strong>(703) 431-4468 <Arrow /></strong></a>
+              <a href="mailto:sales@crestlanedigital.com"><span>Send us an email</span><strong>sales@crestlanedigital.com <Arrow /></strong></a>
+            </div>
           </div>
           <Link className="hero-project" href="/work/dmv-attack" aria-label="View the DMV Attack case study">
             <div className="hero-project-top"><span>IN FOCUS / 01</span><Arrow /></div>

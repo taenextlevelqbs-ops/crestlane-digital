@@ -30,6 +30,8 @@ function Glyph({ type }: { type: string }) {
         d={
           type === "call"
             ? "M5 3h4l2 5-3 2c1 3 3 5 6 6l2-3 5 2v4c0 4-7 2-12-3S1 3 5 3Z"
+            : type === "email"
+              ? "M3 5h18v14H3zM3 5l9 7 9-7"
             : type === "booking"
               ? "M4 5h16v16H4zM8 2v6m8-6v6M4 11h16m-11 5h6"
               : type === "quote"
@@ -289,6 +291,10 @@ export default function CommunicationHub() {
         </button>
       </div>
       <div className="hub-direct">
+        <a href="mailto:sales@crestlanedigital.com">
+          <Glyph type="email" />
+          Email us <span>{iconText("sales@crestlanedigital.com ↗")}</span>
+        </a>
         <a href="sms:+17034314468">
           <Glyph type="chat" />
           Text us <span>{iconText("Send a quick message ↗")}</span>
