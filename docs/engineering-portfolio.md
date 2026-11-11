@@ -27,11 +27,13 @@ Systems and infrastructure engineering with hands-on experience across Windows S
 
 > Infrastructure work performed for employers is intentionally **not** published here. Future labs should use synthetic data, personal subscriptions and isolated demo environments—not employer configurations, government systems, internal artifacts or credentials.
 
-## Upcoming public lab portfolio
-These are **proposed demonstrations**, not claims of completed work:
-1. **Azure secure landing-zone lab** — resource organization, RBAC, networking, budgets, monitoring and IaC samples.
-2. **Windows & Active Directory automation lab** — safe, synthetic OU/GPO and account lifecycle PowerShell scripts.
-3. **Security hardening lab** — documented local Windows baseline checks with fictional data and remediation examples.
+## Infrastructure lab examples
+The following **public demonstration materials** are available; they are not claims of production deployment or completed live testing:
+1. [Read-only Windows system health audit (PowerShell)](labs/windows-system-health-audit.ps1) — example OS, disk, uptime and service checks for an authorized test machine.
+2. [Azure landing-zone plan](labs/azure-landing-zone-plan.md) — proposed governance, identity, networking, logging and IaC work in a personal Azure lab.
+3. [Lab index and safety scope](labs/README.md) — documents the distinction between examples and verified deployments.
+
+**Future labs:** isolated Active Directory/OU/GPO automation and Windows security-baseline demonstrations using synthetic data.
 
 ## Contact and collaboration
 For project inquiries and web-platform work: [Crestlane Digital](https://crestlanedigital.com).
