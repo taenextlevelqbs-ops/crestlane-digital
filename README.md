@@ -1,5 +1,9 @@
 # Crestlane Digital
 
+**Engineering portfolio:** [Takwan Crews-Naylor — Systems, Cloud & Software Projects](docs/engineering-portfolio.md)  
+**Public-repository review:** [Portfolio security checklist](docs/portfolio-security-checklist.md)
+
+
 The existing Crestlane agency site, with an interactive communication hub, persistent lead/chat workflows, and secure client and staff workspaces.
 
 See [platform setup and release](docs/platform-setup.md) for the dedicated database migration, credentials, invite-only accounts, optional AI/booking/social providers and release checks. Existing Resend contact configuration remains in [contact setup](docs/contact-setup.md).
